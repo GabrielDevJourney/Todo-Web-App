@@ -1,0 +1,42 @@
+{
+	"name": "todo-web-app",
+	"version": "1.0.0",
+	"description": "todo list web app",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "webpack serve --config webpack.config.js",
+		"dev": "webpack serve --config webpack.config.js",
+		"build": "webpack --mode production",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/GabrielDevJourney/Todo-Web-App.git"
+	},
+	"keywords": [
+		"todo",
+		"webapp",
+		"javascript",
+		"vanilla-js"
+	],
+	"author": "Gabriel Pereira",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/GabrielDevJourney/Todo-Web-App/issues"
+	},
+	"homepage": "https://github.com/GabrielDevJourney/Todo-Web-App",
+	"devDependencies": {
+		"css-loader": "^7.1.2",
+		"file-loader": "^6.2.0",
+		"gh-pages": "^6.1.1",
+		"html-webpack-plugin": "^5.6.0",
+		"mini-css-extract-plugin": "^2.9.1",
+		"style-loader": "^4.0.0",
+		"url-loader": "^4.1.1",
+		"webpack": "^5.94.0",
+		"webpack-cli": "^5.1.4",
+		"webpack-dev-server": "^5.1.0"
+	}
+}
