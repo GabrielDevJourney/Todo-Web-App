@@ -27,6 +27,10 @@
 		"url": "https://github.com/GabrielDevJourney/Todo-Web-App/issues"
 	},
 	"homepage": "https://github.com/GabrielDevJourney/Todo-Web-App",
+	"dependencies": {
+		"animate.css": "^4.1.1",
+		"aos": "^2.3.4"
+	},
 	"devDependencies": {
 		"css-loader": "^7.1.2",
 		"file-loader": "^6.2.0",
