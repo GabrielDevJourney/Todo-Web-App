@@ -24,11 +24,26 @@ module.exports = {
 			},
 			{
 				test: /\.(png|svg|jpg|jpeg|gif)$/i,
-				type: "asset/resource",
+				use: [
+					{
+						loader: "url-loader",
+						options: {
+							limit: 8192, // Convert images < 8kb to base64 strings
+							name: "images/[name].[hash:7].[ext]",
+						},
+					},
+				],
 			},
 			{
 				test: /\.(woff|woff2|eot|ttf|otf)$/i,
-				type: "asset/resource",
+				use: [
+					{
+						loader: "file-loader",
+						options: {
+							name: "fonts/[name].[hash:7].[ext]",
+						},
+					},
+				],
 			},
 		],
 	},
@@ -57,7 +72,7 @@ module.exports = {
 		},
 	},
 	resolve: {
-		extensions: [".js", ".jsx", ".json", ".png"],
+		extensions: [".js", ".jsx", ".json"],
 		modules: [path.resolve(__dirname, "node_modules")],
 	},
 	devtool: "inline-source-map",
