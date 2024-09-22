@@ -9,6 +9,7 @@ module.exports = {
 	output: {
 		filename: "bundle.js",
 		path: path.resolve(__dirname, "dist"),
+		publicPath: "/",
 		clean: true,
 	},
 	module: {
@@ -23,27 +24,30 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.(png|svg|jpg|jpeg|gif)$/i,
-				use: [
-					{
-						loader: "url-loader",
-						options: {
-							limit: 8192, // Convert images < 8kb to base64 strings
-							name: "images/[name].[hash:7].[ext]",
-						},
+				test: /\.svg$/,
+				type: "asset/resource",
+				generator: {
+					filename: "images/[name][ext]",
+				},
+			},
+			{
+				test: /\.(png|jpg|jpeg|gif)$/i,
+				type: "asset",
+				parser: {
+					dataUrlCondition: {
+						maxSize: 8192, // 8kb
 					},
-				],
+				},
+				generator: {
+					filename: "images/[name].[hash:7][ext]",
+				},
 			},
 			{
 				test: /\.(woff|woff2|eot|ttf|otf)$/i,
-				use: [
-					{
-						loader: "file-loader",
-						options: {
-							name: "fonts/[name].[hash:7].[ext]",
-						},
-					},
-				],
+				type: "asset/resource",
+				generator: {
+					filename: "fonts/[name].[hash:7][ext]",
+				},
 			},
 		],
 	},
@@ -73,7 +77,10 @@ module.exports = {
 	},
 	resolve: {
 		extensions: [".js", ".jsx", ".json"],
-		modules: [path.resolve(__dirname, "node_modules")],
+		modules: [
+			path.resolve(__dirname, "src"),
+			path.resolve(__dirname, "node_modules"),
+		],
 	},
 	devtool: "inline-source-map",
 };
