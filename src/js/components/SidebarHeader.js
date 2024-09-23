@@ -38,6 +38,9 @@ export function createSidebarHeader(){
 
     return logoTextColapseContainer
 }
+const sidebarHeaderContainer = createSidebarHeader()
+sidebarHeaderContainer.className = 'sidebarHeaderContainer'
+export {sidebarHeaderContainer}
 
 function toggleSidebar(){
     //TODO
