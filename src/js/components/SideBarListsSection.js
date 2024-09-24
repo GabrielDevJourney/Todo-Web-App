@@ -51,3 +51,6 @@ function createListsViewSection(){
 
     return listsContainer
 }
+
+const sidebarListsSection = createSidebarListSection()
+export {sidebarListsSection}
