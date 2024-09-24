@@ -1,5 +1,5 @@
 import addIcon from '../../../src/assets/addCircleIcon.svg'
-import { getLists, loadListsFromStorage } from '../data/listManager.js';
+import { getLists, loadListsFromStorage } from '../data/listsManager.js';
 import { createListItem } from './SideBarListItem.js';
 
 function createSidebarListSection(){
