@@ -8,5 +8,5 @@ function createSidebarLineSeparator(){
 
     return lineSeperatorContainer
 }
-const sidebarLineSeperator = createSidebarLineSeparator
+const sidebarLineSeperator = createSidebarLineSeparator()
 export {sidebarLineSeperator}
