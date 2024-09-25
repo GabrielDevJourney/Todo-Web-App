@@ -1,6 +1,6 @@
 let userLists = {}
 
-export function addNewList(name,color){
+function addNewList(name,color){
     if(userLists[name]) return false
     userLists[name] = {
         name,
@@ -11,11 +11,11 @@ export function addNewList(name,color){
     return true
 }
 
-export function getLists(){
+function getLists(){
     return Object.values(userLists)
 }
 
-export function deleteList(name){
+function deleteList(name){
     if(!userLists[name]) return false
     delete userLists[name]
     saveListToStorage()
@@ -26,9 +26,16 @@ function saveListToStorage(){
     localStorage.setItem('userLists', JSON.stringify(userLists))
 }
 
-export function loadListsFromStorage() {
+function loadListsFromStorage() {
 	const stored = localStorage.getItem("userLists");
 	if (stored) {
 		userLists = JSON.parse(stored);
 	}
+}
+
+export {
+    addNewList,
+    getLists,
+    deleteList,
+    loadListsFromStorage
 }
