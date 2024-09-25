@@ -32,7 +32,8 @@
 	"homepage": "https://github.com/GabrielDevJourney/Todo-Web-App",
 	"dependencies": {
 		"animate.css": "^4.1.1",
-		"aos": "^2.3.4"
+		"aos": "^2.3.4",
+		"date-fns": "^4.1.0"
 	},
 	"devDependencies": {
 		"css-loader": "^7.1.2",
