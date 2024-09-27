@@ -2,7 +2,8 @@ import { prioritiesArray } from "../data/prioritiesManager";
 import { format, addDays } from "date-fns";
 import { updateListDropdowns } from "../ui/modalsHandler";
 import { dropdownItems } from "../data/newTaskModalDropItemsManager";
-import { getTaskProperties, handleTaskSubmit } from "../data/tasksManager";
+import {  handleTaskSubmit } from "../data/tasksManager";
+import addTaskModalExitIcon from '../../../src/assets/exitIcon.png'
 
 //export
 function createNewTaskModal() {
@@ -21,6 +22,11 @@ function createNewTaskModal() {
 	const addNewTaskModalExitBtn = document.createElement("button");
 	addNewTaskModalExitBtn.className = "addNewTaskModalExitBtn";
 	headerAndExitContainer.appendChild(addNewTaskModalExitBtn);
+
+    const addNewTaskModalExitIcon = document.createElement('img')
+    addNewTaskModalExitIcon.className = 'addNewTaskModalExitIcon'
+    addNewTaskModalExitIcon.src = addTaskModalExitIcon
+    addNewTaskModalExitBtn.appendChild(addNewTaskModalExitIcon)
 
 	const addNewTaskModalNameAndDescription = document.createElement("div");
 	addNewTaskModalNameAndDescription.className = "addNewTaskModalNameAndDescription";   
