@@ -2,6 +2,7 @@ import { prioritiesArray } from "../data/prioritiesManager";
 import { format, addDays } from "date-fns";
 import { updateListDropdowns } from "../ui/modalsHandler";
 import { dropdownItems } from "../data/newTaskModalDropItemsManager";
+import { getTaskProperties, handleTaskSubmit } from "../data/tasksManager";
 
 //export
 function createNewTaskModal() {
@@ -50,6 +51,12 @@ function createNewTaskModal() {
     newTaskSubmitBtn.className = 'newTaskSubmitBtn'
     newTaskSubmitBtn.type = 'submit'
     newTaskSubmitBtn.value = 'Add Task'
+    newTaskSubmitBtn.textContent = 'Add Task'
+    newTaskSubmitBtn.addEventListener('click', (event) => {
+        event.preventDefault()
+        handleTaskSubmit()
+    })
+    addNewTaskModalContainer.appendChild(newTaskSubmitBtn)
 
 
 	return addNewTaskModalContainer;
@@ -103,6 +110,7 @@ function createPriorityDropdown() {
 	selectDropdown.className = "priorityeDropdown";
 	prioritiesArray.forEach((priority) => {
 		const option = document.createElement("option");
+        option.className = 'optionSelected'
 		option.value = priority.priorityLevel.toLowerCase();
 		option.textContent = priority.priorityLevel;
 		selectDropdown.appendChild(option);
@@ -150,3 +158,15 @@ function createListDropdown() {
 // function exitAndClearInputsNewTaskModal() {}
 
 export { createNewTaskModal };
+export const getTaskNameElement = () =>
+	document.querySelector(".addNewTaskModalInputTaskName");
+export const getTaskDescriptionElement = () =>
+	document.querySelector(".addNewTaskModalInputTaskDescription");
+export const getTaskPriorityElement = () =>
+	document.querySelector(".priorityeDropdown");
+export const getTaskDueDateElement = () => document.querySelector(".dateInput");
+export const getTaskListElement = () =>
+	document.querySelector(".listsDropdown");
+export const getNewTaskModaContainer = () => document.querySelector(
+	".addNewTaskModalContainer"
+);
