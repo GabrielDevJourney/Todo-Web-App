@@ -21,6 +21,9 @@ function createNewTaskModal() {
 
 	const addNewTaskModalExitBtn = document.createElement("button");
 	addNewTaskModalExitBtn.className = "addNewTaskModalExitBtn";
+    addNewTaskModalExitBtn.addEventListener('click', () => {
+        addNewTaskModalContainer.style.display = 'none'
+    })
 	headerAndExitContainer.appendChild(addNewTaskModalExitBtn);
 
     const addNewTaskModalExitIcon = document.createElement('img')
@@ -159,6 +162,7 @@ function createListDropdown() {
 
 	return listsDropdown;
 }
+
 
 //todo add this fucntionality to the exit modal btn
 // function exitAndClearInputsNewTaskModal() {}
