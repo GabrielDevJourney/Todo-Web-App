@@ -1,7 +1,6 @@
 import exitIcon from "../../../src/assets/exitIcon.png";
 import iro from "@jaames/iro";
-import { addNewList, getLists, userLists } from "../data/listsManager";
-import { createListItem } from "./SideBarListItem";
+import { addNewList } from "../data/listsManager";
 import { addNewListItem } from "./SideBarListsSection";
 
 function createNewListModal() {

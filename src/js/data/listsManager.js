@@ -8,6 +8,7 @@ function addNewList(name,color){
         tasks: []
     }
     saveListToStorage()
+    console.log('userlist', userLists)
     return true
 }
 
@@ -25,12 +26,12 @@ function deleteList(name){
 function saveListToStorage(){
     localStorage.setItem('userLists', JSON.stringify(userLists))
 }
-
 function loadListsFromStorage() {
 	const stored = localStorage.getItem("userLists");
 	if (stored) {
 		userLists = JSON.parse(stored);
 	}
+    console.log('Lists loaded from storage:', userLists)
 }
 
 export {
