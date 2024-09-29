@@ -1,8 +1,10 @@
 import editListItemIcon from "../../../src/assets/editListItemIcon.svg";
+import { openEditListModal } from "./ModalEditList";
 
 export function createListItem(list) {
 	const listItemContainer = document.createElement("div");
 	listItemContainer.className = "listItemContainer";
+    listItemContainer.dataset.listName = list.name
 
 	const listItemColorDisplay = document.createElement("div");
 	listItemColorDisplay.className = "listItemColorDisplay";
@@ -17,12 +19,19 @@ export function createListItem(list) {
 
 	const listItemEditBtn = document.createElement("button");
 	listItemEditBtn.className = "listItemEditBtn";
+    listItemEditBtn.addEventListener('click', () => {
+        console.log('edit btn for list', list.name)
+        openEditListModal(list.name)
+    })
 	listItemContainer.appendChild(listItemEditBtn);
 
 	const listItemEditBtnIcon = document.createElement("img");
 	listItemEditBtnIcon.className = "listItemEditBtnIcon";
 	listItemEditBtnIcon.src = editListItemIcon;
 	listItemEditBtnIcon.alt = "Pencil icon inside a square";
+    listItemEditBtn.addEventListener('click', () => {
+        openEditListModal(list.name)
+    })
 	listItemEditBtn.appendChild(listItemEditBtnIcon);
 
 	return listItemContainer;
