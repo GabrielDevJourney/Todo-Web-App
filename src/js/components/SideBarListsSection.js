@@ -16,18 +16,17 @@ function createSidebarListSection() {
 	listHeaderText.textContent = "Lists";
 	listSectionHeaderContainer.appendChild(listHeaderText);
 
-    let newListModal = null 
+	let newListModal = null;
 
 	const addNewListBtn = document.createElement("button");
 	addNewListBtn.className = "addNewListBtn";
 	addNewListBtn.addEventListener("click", () => {
-
-        if (!newListModal) {
+		if (!newListModal) {
 			newListModal = createNewListModal();
 			document.body.appendChild(newListModal);
-		}else{
-            newListModal.style.display = 'block'
-        }
+		} else {
+			newListModal.style.display = "block";
+		}
 	});
 	listSectionHeaderContainer.appendChild(addNewListBtn);
 
@@ -53,16 +52,17 @@ function createListsViewSection() {
 		const lists = getLists();
 		lists.forEach((list) => {
 			const listItem = createListItem(list);
-            listItem.className = 'listItem'
+			listItem.className = "listItem";
 			listsContainer.appendChild(listItem);
 		});
 	}
 
-	loadListsFromStorage()
+	loadListsFromStorage();
 	renderLists();
 
 	return listsContainer;
 }
+
 function addNewListItem(list) {
 	const listsView = document.querySelector(".listsView");
 	if (listsView) {
@@ -72,6 +72,40 @@ function addNewListItem(list) {
 	}
 }
 
+function updateListItemInDOM(oldName, newName, newColor) {
+	const listItem = document.querySelector(
+		`.listItem[data-list-name="${oldName}"]`
+	);
+	if (listItem) {
+		listItem.dataset.listName = newName;
+
+		const listItemNewName = listItem.querySelector(".listItemTextName");
+		const listItemNewColor = listItem.querySelector(
+			".listItemColorDisplay"
+		);
+
+		listItemNewName.textContent = newName;
+		listItemNewColor.style.backgroundColor = newColor;
+
+		console.log("new name", listItemNewName, listItemNewColor);
+	}
+}
+
+function removeListItemFromDOM(listName) {
+	const listItem = document.querySelector(
+		`.listItem[data-list-name="${listName}"]`
+	);
+	if (listItem) {
+		listItem.remove();
+	}
+}
+
 const sidebarListsSection = createSidebarListSection();
 
-export { sidebarListsSection, createListItem,addNewListItem };
+export {
+	sidebarListsSection,
+	createListItem,
+	addNewListItem,
+	updateListItemInDOM,
+	removeListItemFromDOM,
+};
