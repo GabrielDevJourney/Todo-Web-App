@@ -1,5 +1,5 @@
 import addNewTaskIcon from '../../../src/assets/addCircleIcon.svg'
-import inboxIcon from '../../../src/assets/inboxIcon.svg'
+import inboxIcon from '../../../src/assets/inboxTest.png'
 import todayCalendarIcon from '../../../src/assets/calendarTodayIcon.svg'
 import tomorrowCalendarIcon from '../../../src/assets/calendarTomorrowIcon.svg'
 import thisWeekIcon from '../../../src/assets/calendarThisWeekIcon.svg'

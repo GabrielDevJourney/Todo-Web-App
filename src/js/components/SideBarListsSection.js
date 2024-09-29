@@ -1,4 +1,4 @@
-import addIcon from "../../../src/assets/addCircleIcon.svg";
+import addIcon from "../../../src/assets/addNewListBtnIcon.svg";
 import { getLists, loadListsFromStorage } from "../data/listsManager.js";
 import { createListItem } from "./SideBarListItem.js";
 import { createNewListModal } from "./ModalNewList.js";

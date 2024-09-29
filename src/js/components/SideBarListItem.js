@@ -8,7 +8,6 @@ export function createListItem(list) {
 
 	const listItemColorDisplay = document.createElement("div");
 	listItemColorDisplay.className = "listItemColorDisplay";
-    listItemColorDisplay.style.height = '15px'
 	listItemColorDisplay.style.backgroundColor = list.color;
 	listItemContainer.appendChild(listItemColorDisplay);
 
