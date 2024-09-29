@@ -26,6 +26,7 @@ function deleteList(name){
 function saveListToStorage(){
     localStorage.setItem('userLists', JSON.stringify(userLists))
 }
+
 function loadListsFromStorage() {
 	const stored = localStorage.getItem("userLists");
 	if (stored) {
@@ -34,9 +35,31 @@ function loadListsFromStorage() {
     console.log('Lists loaded from storage:', userLists)
 }
 
+function updateListProperties(oldName, newName, newColor) {
+	if (oldName !== newName && userLists[newName]) {
+		return false; // New name already exists
+	}
+
+	const list = userLists[oldName];
+	if (!list) return false;
+
+	delete userLists[oldName];
+	userLists[newName] = {
+		...list,
+		name: newName,
+		color: newColor,
+	};
+
+	saveListToStorage();
+    console.log('new list properties', userLists)
+	return true;
+}
+
+
 export {
     addNewList,
     getLists,
     deleteList,
-    loadListsFromStorage
+    loadListsFromStorage,
+    updateListProperties, 
 }
