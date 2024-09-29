@@ -1,0 +1,9 @@
+.lineSeperatorContainer{
+    display: flex;
+    justify-content: center;
+}
+.lineSeperator{
+    height: 1px;
+    width: 95%;
+    background-color: var(--secondary--);
+}

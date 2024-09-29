@@ -1,0 +1,32 @@
+.sidebarHeaderContainer{
+    margin-top: 1rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoTextContainer{
+    display: flex;
+    gap: .2rem;
+    align-items: center;
+    justify-content: space-evenly;
+    width: auto;
+}
+.textSideBarHeader{
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: medium bold;
+    font-size: 2rem;
+}
+.colapseAndOpenIconsContainer{
+    background-color: none;
+    cursor: pointer;
+    height: 30px;
+}
+.colapseBtn,
+.openSidebarBtn{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}

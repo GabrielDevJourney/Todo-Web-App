@@ -1,0 +1,80 @@
+.listSectionContainer {
+	margin: 1rem;
+}
+.listSectionHeaderContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.listHeaderText {
+	font-size: 1rem;
+	height: 24px;
+	padding-left: 0.5rem;
+	color: var(--textcolorlowopacity--);
+	font-weight: 500;
+}
+.addNewListBtn {
+	background-color: transparent;
+	height: 24px;
+	border: none;
+	cursor: pointer;
+}
+.listsView {
+	margin-top: 1rem;
+    height: 350px;
+    overflow-y: scroll;
+    border-radius: 24px;
+    
+    scrollbar-gutter: stable;
+}
+.listsView::-webkit-scrollbar{
+    width: 0;
+    background: transparent;
+}
+.listsView:hover::-webkit-scrollbar{
+    width: 8px;
+}
+.listsView:hover::-webkit-scrollbar-track{
+    background: var(--hovercalendars--);
+    border-radius: 6px;
+}
+.listsView:hover::-webkit-scrollbar-thumb{
+    background-color: var(--textcolorlowopacity--);
+    border-radius: 6px;
+}
+.listItem {
+	display: grid;
+	grid-template-columns: 1fr 4fr 1fr;
+	grid-template-rows: 1fr;
+	grid-template-areas: "color name edit";
+	height: 40px;
+    width: 250px;
+	align-items: center;
+	border-radius: 16px;
+	cursor: pointer;
+}
+.listItemColorDisplay {
+	width: 20px;
+	height: 20px;
+	border-radius: 4px;
+    justify-self: center;
+}
+.listItemTextName {
+	font-size: 1rem;
+	color: var(--textcolorlowopacity--);
+}
+.listItemEditBtn {
+	width: 24px;
+	height: 24px;
+	background-color: transparent;
+	display: none;
+	border: none;
+	cursor: pointer;
+    justify-self: center;
+}
+.listItem:hover {
+	.listItemEditBtn {
+		display: block;
+	}
+	background-color: var(--hovercalendars--);
+}

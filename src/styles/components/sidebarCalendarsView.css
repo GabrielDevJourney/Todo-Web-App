@@ -1,0 +1,28 @@
+.sidebarCalendarsViewContainer {
+	width: auto;
+	margin: 1rem;
+}
+.sidebarCalendarsItem {
+	margin: 0.8rem 0;
+}
+.sidebarItemBtn {
+	width: 260px;
+    height: 45px;
+    padding-left: 0.5rem;
+	display: flex;
+	align-items: center;
+    gap: 1rem;
+    background-color: transparent;
+    color: var(--textcolorlowopacity--);
+    border: none;
+    cursor: pointer;
+}
+.sidebarItemBtn > span{
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+.sidebarItemBtn:hover{
+    border-radius: 1rem;
+    background-color: var(--hovercalendars--);
+}
