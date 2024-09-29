@@ -59,6 +59,7 @@ function createNewListModal() {
 	newListModalThemeContainer.appendChild(colorPickerBtn);
 
 	const colorPickerContainer = document.createElement("div");
+    colorPickerContainer.className = 'colorPickerContainer'
 	colorPickerContainer.style.display = "none";
 	newListModalContainer.appendChild(colorPickerContainer);
 
