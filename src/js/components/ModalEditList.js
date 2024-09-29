@@ -1,16 +1,20 @@
-import { getLists, deleteList, updateListProperties } from "../data/listsManager";
+import {
+	getLists,
+	deleteList,
+	updateListProperties,
+} from "../data/listsManager";
 import iro from "@jaames/iro";
 import closeIcon from "../../../src/assets/exitIcon.png";
 import {
 	updateListItemInDOM,
 	removeListItemFromDOM,
-} from "./SideBarListsSection";
+} from "../ui/modalsHandler";
 
 let editListModal = null;
 let colorPicker = null;
 
 function openEditListModal(listName) {
-    const lists = getLists()
+	const lists = getLists();
 	const list = lists.find((l) => l.name === listName);
 	if (!list) {
 		console.error("list not found");
@@ -63,13 +67,13 @@ function createEditListModal() {
 	editListModalThemeContainer.appendChild(colorPickerBtn);
 
 	const colorPickerContainer = document.createElement("div");
-    colorPickerContainer.className = 'colorPickerContainer'
+	colorPickerContainer.className = "colorPickerContainer";
 	colorPickerContainer.style.display = "none";
 	editListModalThemeContainer.appendChild(colorPickerContainer);
 
 	const editListModalPickerElement = document.createElement("div");
 	editListModalPickerElement.className = "editListModalPickerElement";
-	editListModalPickerElement.id = "picker";
+	editListModalPickerElement.id = "boxPicker";
 	colorPickerContainer.appendChild(editListModalPickerElement);
 
 	const buttonContainer = document.createElement("div");
@@ -79,13 +83,13 @@ function createEditListModal() {
 	const editListModalUpdateBtn = document.createElement("button");
 	editListModalUpdateBtn.className = "editListModalUpdateBtn";
 	editListModalUpdateBtn.textContent = "Update";
-    editListModalUpdateBtn.onclick = saveListChanges
+	editListModalUpdateBtn.onclick = saveListChanges;
 	buttonContainer.appendChild(editListModalUpdateBtn);
 
 	const editListModalDeleteBtn = document.createElement("button");
 	editListModalDeleteBtn.className = "editListModalDeleteBtn";
 	editListModalDeleteBtn.textContent = "Delete";
-    editListModalDeleteBtn.onclick = deleteListItem
+	editListModalDeleteBtn.onclick = deleteListItem;
 	buttonContainer.appendChild(editListModalDeleteBtn);
 
 	// Toggle color picker visibility
@@ -94,9 +98,6 @@ function createEditListModal() {
 			colorPickerContainer.style.display === "none" ? "block" : "none";
 	};
 
-	editListModalUpdateBtn.addEventListener("click", saveListChanges);
-
-
 	return editListModal;
 }
 
@@ -104,14 +105,25 @@ function populateEditModal(list) {
 	const nameInput = document.querySelector(".editListModalNameInput");
 	nameInput.value = list.name;
 
-    
 	const colorPickerBtn = editListModal.querySelector(".colorPickerBtn");
 	colorPickerBtn.style.backgroundColor = list.color;
 
 	if (!colorPicker) {
-		colorPicker = new iro.ColorPicker("#picker", {
-			width: 200,
+		colorPicker = new iro.ColorPicker("#boxPicker", {
+			width: 150,
 			color: list.color,
+			borderWidth: 1,
+			borderColor: "#fff",
+			layout: [{ 
+                component: iro.ui.Box
+            },
+            {
+                component: iro.ui.Slider,
+                options:{
+                    id:'hue-slider',
+                    sliderType: 'hue'
+                }
+            }],
 		});
 		colorPicker.on("color:change", (color) => {
 			colorPickerBtn.style.backgroundColor = color.hexString;
@@ -120,13 +132,13 @@ function populateEditModal(list) {
 		colorPicker.color.set(list.color);
 	}
 
-	const colorPickerContainer = document.querySelector(".colorPickerContainer");
+	const colorPickerContainer = document.querySelector(
+		".colorPickerContainer"
+	);
 	colorPickerBtn.onclick = () => {
 		colorPickerContainer.style.display =
 			colorPickerContainer.style.display === "none" ? "block" : "none";
 	};
-
-    
 }
 
 function saveListChanges() {
@@ -143,17 +155,15 @@ function saveListChanges() {
 	}
 }
 
-function deleteListItem(){
-        const listName = editListModal.dataset.listName;
-		if (
-			confirm(`Are you sure you want to delete the list "${listName}"?`)
-		) {
-			if (deleteList(listName)) {
-				removeListItemFromDOM(listName);
-				editListModal.style.display = "none";
-			} else {
-				alert("Failed to delete list.");
-			}
+function deleteListItem() {
+	const listName = editListModal.dataset.listName;
+	if (confirm(`Are you sure you want to delete the list "${listName}"?`)) {
+		if (deleteList(listName)) {
+			removeListItemFromDOM(listName);
+			editListModal.style.display = "none";
+		} else {
+			alert("Failed to delete list.");
 		}
+	}
 }
 export { openEditListModal };

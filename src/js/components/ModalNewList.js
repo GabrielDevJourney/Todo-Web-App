@@ -64,7 +64,7 @@ function createNewListModal() {
 
 	const colorPickerElement = document.createElement("div");
 	colorPickerElement.className = "colorPickerElement";
-	colorPickerElement.id = "picker";
+	colorPickerElement.id = "boxPicker";
 	colorPickerContainer.appendChild(colorPickerElement);
 
 	let colorPicker = null;
@@ -99,9 +99,23 @@ function createNewListModal() {
 }
 
 function createColorPicker() {
-	const colorPicker = new iro.ColorPicker("#picker", {
-		width: 100,
+	const colorPicker = new iro.ColorPicker("#boxPicker", {
+		width: 150,
 		color: "#f00",
+		borderWidth: 1,
+		borderColor: "#fff",
+		layout: [
+			{
+				component: iro.ui.Box,
+			},
+			{
+				component: iro.ui.Slider,
+				options: {
+					id: "hue-slider",
+					sliderType: "hue",
+				},
+			},
+		],
 	});
 
 	colorPicker.on("color:change", function (color) {
