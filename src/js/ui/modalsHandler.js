@@ -1,6 +1,6 @@
-import { getLists, addNewList } from "../data/listsManager.js";
+import { getLists } from "../data/listsManager.js";
 
-export function updateListDropdowns() {
+function updateListDropdowns() {
 	const listDropdowns = document.querySelectorAll(".list-dropdown");
 
 	listDropdowns.forEach((dropdown) => {
@@ -26,3 +26,34 @@ export function updateListDropdowns() {
 		});
 	});
 }
+
+function updateListItemInDOM(oldName, newName, newColor) {
+	const listItem = document.querySelector(
+		`.listItem[data-list-name="${oldName}"]`
+	);
+	if (listItem) {
+		listItem.dataset.listName = newName;
+
+        const colorPickerContainer = document.querySelector('.colorPickerContainer')
+		const listItemNewName = listItem.querySelector(".listItemTextName");
+		const listItemNewColor = listItem.querySelector(
+			".listItemColorDisplay"
+		);
+        colorPickerContainer.style.display = 'none'
+		listItemNewName.textContent = newName;
+		listItemNewColor.style.backgroundColor = newColor;
+
+		console.log("new name", listItemNewName, listItemNewColor);
+	}
+}
+
+function removeListItemFromDOM(listName) {
+	const listItem = document.querySelector(
+		`.listItem[data-list-name="${listName}"]`
+	);
+	if (listItem) {
+		listItem.remove();
+	}
+}
+
+export { updateListDropdowns, updateListItemInDOM, removeListItemFromDOM };

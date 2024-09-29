@@ -72,40 +72,11 @@ function addNewListItem(list) {
 	}
 }
 
-function updateListItemInDOM(oldName, newName, newColor) {
-	const listItem = document.querySelector(
-		`.listItem[data-list-name="${oldName}"]`
-	);
-	if (listItem) {
-		listItem.dataset.listName = newName;
-
-		const listItemNewName = listItem.querySelector(".listItemTextName");
-		const listItemNewColor = listItem.querySelector(
-			".listItemColorDisplay"
-		);
-
-		listItemNewName.textContent = newName;
-		listItemNewColor.style.backgroundColor = newColor;
-
-		console.log("new name", listItemNewName, listItemNewColor);
-	}
-}
-
-function removeListItemFromDOM(listName) {
-	const listItem = document.querySelector(
-		`.listItem[data-list-name="${listName}"]`
-	);
-	if (listItem) {
-		listItem.remove();
-	}
-}
 
 const sidebarListsSection = createSidebarListSection();
 
 export {
 	sidebarListsSection,
 	createListItem,
-	addNewListItem,
-	updateListItemInDOM,
-	removeListItemFromDOM,
+	addNewListItem
 };
