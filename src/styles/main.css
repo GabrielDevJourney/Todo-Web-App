@@ -1,5 +1,6 @@
 @import './layouts/sidebar.css';
 @import './variables.css';
+@import './components/modalNewTask.css';
 
 *{
     padding: 0;

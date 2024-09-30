@@ -1,0 +1,112 @@
+.addNewTaskModalContainer {
+	position: absolute;
+	padding: 1.5rem;
+	width: 400px;
+    height: 500px;
+	top: 20%;
+	left: 20%;
+	background-color: var(--backgroudcolor--);
+	border-radius: 40px;
+	border: none;
+}
+
+.priorityeDropdown,
+.dateInput,
+.listsDropdown {
+	background-color: var(--backgroudcolor--);
+	color: var(--inputAndSelectMenusTextColor--);
+	border: none;
+}
+
+.headerAndExitContainer {
+	display: flex;
+	margin: 1rem;
+	justify-content: center;
+	align-items: center;
+}
+.addNewTaskModalHeaderText {
+	font-size: 2rem;
+	font-weight: 500;
+    color: var(--textcolorlowopacity--);
+}
+.addNewTaskModalExitBtn {
+	position: absolute;
+	top: 3%;
+	left: 89%;
+	width: 30px;
+	height: 30px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+.addNewTaskModalNameAndDescription {
+	width: 360px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.8rem;
+	margin-bottom: 1rem;
+}
+.addNewTaskModalInputTaskName,
+.addNewTaskModalInputTaskDescription{
+    width: 80%;
+    height: 2.5rem;
+    padding-left: 0.5rem;
+    border-radius: 16px;
+    background-color: var(--backgroudcolor--);
+    border: none;
+    color: white;
+}
+.addNewTaskModalInputTaskName {
+	font-size: 1.4rem;
+	font-weight: 500;
+}
+.addNewTaskModalInputTaskDescription {
+	font-size: 1rem;
+	font-weight: 400;
+}
+.addNewTaskModalInputTaskName:hover,
+.addNewTaskModalInputTaskDescription:hover{
+    background-color: var(--hovercalendars--);
+}
+.addNewTaskModalInputTaskName:focus,
+.addNewTaskModalInputTaskDescription:focus{
+    background-color: transparent;
+    color: white;
+}
+.addNewTaskModalInputTaskName::placeholder,
+.addNewTaskModalInputTaskDescription::placeholder{
+    color: var(--inputAndSelectMenusTextColor--);
+}
+.taskPropertiesContainer{
+    height: 200px;
+}
+.itemCotainerPriority,
+.itemCotainerDue,
+.itemCotainerList{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+}
+.iconLabelContainer{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.newTaskLabelText{
+    color: var(--textcolorlowopacity--);
+    font-weight: 300;
+}
+
+.newTaskSubmitBtn{
+    width: 100%;
+    height: 70px;
+    background-color: transparent;
+    border: 2px solid var(--secondary--);
+    color: var(--textcolorlowopacity--);
+    font-size: 2rem;
+    text-align: center;
+    border-radius: 30px;
+}
