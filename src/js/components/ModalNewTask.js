@@ -8,6 +8,7 @@ import addTaskModalExitIcon from '../../../src/assets/exitIcon.png'
 //export
 function createNewTaskModal() {
 	const addNewTaskModalContainer = document.createElement("div");
+    addNewTaskModalContainer.style.display = 'block'
 	addNewTaskModalContainer.className = "addNewTaskModalContainer";
 
 	const headerAndExitContainer = document.createElement("div");
@@ -37,11 +38,13 @@ function createNewTaskModal() {
 
 	const addNewTaskModalInputTaskName = document.createElement("input");
 	addNewTaskModalInputTaskName.className = "addNewTaskModalInputTaskName";
+    addNewTaskModalInputTaskName.placeholder = 'Task Name'
 	addNewTaskModalNameAndDescription.appendChild(addNewTaskModalInputTaskName);
 
 	const addNewTaskModalInputTaskDescription = document.createElement("input");
 	addNewTaskModalInputTaskDescription.className =
 		"addNewTaskModalInputTaskDescription";
+    addNewTaskModalInputTaskDescription.placeholder = 'Task Description'
 	addNewTaskModalNameAndDescription.appendChild(
 		addNewTaskModalInputTaskDescription
 	);
@@ -94,6 +97,7 @@ function createIconLabel(icon, label) {
 	iconAndLabelContainer.appendChild(iconElement);
 
 	const labelElement = document.createElement("span");
+    labelElement.className = 'newTaskLabelText'
 	labelElement.textContent = label;
 	iconAndLabelContainer.appendChild(labelElement);
 
