@@ -10,6 +10,9 @@
     font-family: "JetBrains Mono", monospace;
     box-sizing: border-box;
 }
+body{
+    background-color: black;
+}
 html{
     scrollbar-gutter: stable;
 }

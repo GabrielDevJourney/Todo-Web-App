@@ -13,7 +13,7 @@
     width: auto;
 }
 .textSideBarHeader{
-    color: white;
+    color: var(--textcolorlowopacity--);
     font-family: 'JetBrains Mono', monospace;
     font-weight: medium bold;
     font-size: 2rem;
@@ -21,11 +21,12 @@
 .colapseAndOpenIconsContainer{
     background-color: none;
     cursor: pointer;
-    height: 30px;
+    height: 40px;
 }
 .colapseBtn,
 .openSidebarBtn{
     border: none;
     background-color: transparent;
     cursor: pointer;
+    height: 100%;
 }

@@ -11,8 +11,9 @@
 }
 
 .priorityeDropdown,
-.dateInput,
+.dateInputContainer,
 .listsDropdown {
+    width: 110px;
 	background-color: var(--backgroudcolor--);
 	color: var(--inputAndSelectMenusTextColor--);
 	border: none;
@@ -112,6 +113,12 @@
     top: 0;
     left: 0;
     visibility: hidden;
+}
+.listsDropdown{
+    text-align: left;
+}
+.listsDropdown > option{
+    font-weight: 500;
 }
 .newTaskSubmitBtn{
     width: 100%;
