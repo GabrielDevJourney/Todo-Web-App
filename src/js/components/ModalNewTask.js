@@ -1,6 +1,5 @@
 import { prioritiesArray } from "../data/prioritiesManager";
-import { format, addDays, parse} from "date-fns";
-import { updateListDropdowns } from "../ui/modalsHandler";
+import { getLists } from "../data/listsManager";
 import { dropdownItems } from "../data/newTaskModalDropItemsManager";
 import {  handleTaskSubmit } from "../data/tasksManager";
 import addTaskModalExitIcon from '../../../src/assets/exitIcon.png'
@@ -176,12 +175,18 @@ function createListDropdown() {
 
 	const defaultOption = document.createElement("option");
 	defaultOption.value = "";
-	defaultOption.textContent = "Select a list";
+	defaultOption.textContent = "List";
 	defaultOption.disabled = true;
 	defaultOption.selected = true;
 	listsDropdown.appendChild(defaultOption);
 
-	updateListDropdowns(listsDropdown);
+    const lists = getLists();
+	lists.forEach((list) => {
+		const option = document.createElement("option");
+		option.value = list.name;
+		option.textContent = list.name;
+		listsDropdown.appendChild(option);
+	});
 
 	return listsDropdown;
 }
