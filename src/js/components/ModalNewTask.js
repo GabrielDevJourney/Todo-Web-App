@@ -1,9 +1,10 @@
 import { prioritiesArray } from "../data/prioritiesManager";
-import { format, addDays } from "date-fns";
+import { format, addDays, parse} from "date-fns";
 import { updateListDropdowns } from "../ui/modalsHandler";
 import { dropdownItems } from "../data/newTaskModalDropItemsManager";
 import {  handleTaskSubmit } from "../data/tasksManager";
 import addTaskModalExitIcon from '../../../src/assets/exitIcon.png'
+import {formatDateToDisplay,setMaxDateForInput, setMinDateForInput,getToday, defaultDateFormat,parseDate} from '../data/dateHandler'
 
 //export
 function createNewTaskModal() {
@@ -132,23 +133,41 @@ function createPriorityDropdown() {
 }
 
 function createDatePicker() {
+    const dateInputContainer = document.createElement('div')
+    dateInputContainer.className = 'dateInputContainer'
+
+    const dateDisplay = document.createElement("div");
+	dateDisplay.className = "dateDisplay";
+	dateInputContainer.appendChild(dateDisplay);
+
 	const dateInput = document.createElement("input");
 	dateInput.className = "dateInput";
 	dateInput.type = "date";
+    dateInputContainer.appendChild(dateInput)
+    
+	const today = getToday();
+	dateInput.value = defaultDateFormat(today);
 
-	const today = new Date();
-	dateInput.value = format(today, "yyyy-MM-dd");
+	dateInput.min = setMinDateForInput(today);
 
-	dateInput.min = format(today, "yyyy-MM-dd");
+	const maxDate = setMaxDateForInput(today)
+	dateInput.max = defaultDateFormat(maxDate);
 
-	const maxDate = addDays(today, 365);
-	dateInput.max = format(maxDate, "yyyy-MM-dd");
+    updateDateDisplayContainer(today)
 
 	dateInput.addEventListener("change", (e) => {
-		const selectedDate = new Date(e.target.value);
-		console.log("selected date", format(selectedDate, "dd MMM yyyy"));
+		const selectedDate = parseDate(e.target.value)
+		console.log("selected date", formatDateToDisplay(selectedDate));
+        updateDateDisplayContainer(selectedDate)
 	});
-	return dateInput;
+    dateDisplay.addEventListener("click", () => {
+		dateInput.showPicker();
+	});
+
+    function updateDateDisplayContainer(date){
+        dateDisplay.textContent = formatDateToDisplay(date)
+    }
+	return dateInputContainer;
 }
 
 function createListDropdown() {
