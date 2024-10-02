@@ -13,9 +13,9 @@
     width: auto;
 }
 .textSideBarHeader{
-    color: var(--textcolorlowopacity--);
+    color: var(--inputAndSelectMenusTextColor--);
     font-family: 'JetBrains Mono', monospace;
-    font-weight: medium bold;
+    font-weight: 300;
     font-size: 2rem;
 }
 .colapseAndOpenIconsContainer{

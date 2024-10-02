@@ -1,7 +1,9 @@
 :root{
     --backgroudcolor--: rgba(255,255,255);
-    --textcolorlowopacity--: rgb(0, 0, 63);
+    --textcolorlowopacity--: rgb(0, 0, 90,.70);
     --secondary--: #849B17;
     --hovercalendars--: rgba(132,155,23,0.25);
-    --inputAndSelectMenusTextColor--:rgba(0, 0,63,0.8);
+    --inputAndSelectMenusTextColor--:rgba(0, 0,90);
+    --newTaskModalPropertiesFontWeight-: 500;
+    --testTextColorNewTaskModalProperties-: rgba(0,0,90,.7)
 }

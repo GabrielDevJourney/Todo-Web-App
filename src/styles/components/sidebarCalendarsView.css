@@ -13,14 +13,14 @@
 	align-items: center;
     gap: 1rem;
     background-color: transparent;
-    color: var(--textcolorlowopacity--);
+    color: var(--inputAndSelectMenusTextColor--);
     border: none;
     cursor: pointer;
 }
 .sidebarItemBtn > span{
     font-family: "JetBrains Mono", monospace;
     font-size: 1.2rem;
-    font-weight: 200;
+    font-weight: 300;
 }
 .sidebarItemBtn:hover{
     border-radius: 1rem;
