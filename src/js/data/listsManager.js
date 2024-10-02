@@ -15,6 +15,9 @@ function addNewList(name,color){
 function getLists(){
     return Object.values(userLists)
 }
+function getListsRealObject(){
+    return userLists
+};
 
 function deleteList(name){
     if(!userLists[name]) return false
@@ -23,7 +26,7 @@ function deleteList(name){
     return true
 }
 
-function saveListToStorage(){
+function saveListToStorage(list){
     localStorage.setItem('userLists', JSON.stringify(userLists))
 }
 
@@ -57,9 +60,11 @@ function updateListProperties(oldName, newName, newColor) {
 
 
 export {
-    addNewList,
-    getLists,
-    deleteList,
-    loadListsFromStorage,
-    updateListProperties, 
-}
+	addNewList,
+	getLists,
+	deleteList,
+	loadListsFromStorage,
+	updateListProperties,
+	saveListToStorage,
+	getListsRealObject,
+};
