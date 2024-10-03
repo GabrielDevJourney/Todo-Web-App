@@ -62,19 +62,19 @@ function createEditListModal() {
 	editListModalThemeText.textContent = "Theme";
 	editListModalThemeContainer.appendChild(editListModalThemeText);
 
-	const colorPickerBtn = document.createElement("button");
-	colorPickerBtn.className = "colorPickerBtn";
-	editListModalThemeContainer.appendChild(colorPickerBtn);
+	const colorPickerBtnEditList = document.createElement("button");
+	colorPickerBtnEditList.className = "colorPickerBtnEditList";
+	editListModalThemeContainer.appendChild(colorPickerBtnEditList);
 
-	const colorPickerContainer = document.createElement("div");
-	colorPickerContainer.className = "colorPickerContainer";
-	colorPickerContainer.style.display = "none";
-	editListModalThemeContainer.appendChild(colorPickerContainer);
+	const colorPickerContainerEditList = document.createElement("div");
+	colorPickerContainerEditList.className = "colorPickerContainerEditList";
+	colorPickerContainerEditList.style.display = "none";
+	editListModalThemeContainer.appendChild(colorPickerContainerEditList);
 
 	const editListModalPickerElement = document.createElement("div");
 	editListModalPickerElement.className = "editListModalPickerElement";
 	editListModalPickerElement.id = "boxPicker";
-	colorPickerContainer.appendChild(editListModalPickerElement);
+	colorPickerContainerEditList.appendChild(editListModalPickerElement);
 
 	const buttonContainer = document.createElement("div");
 	buttonContainer.className = "buttonContainer";
@@ -93,9 +93,9 @@ function createEditListModal() {
 	buttonContainer.appendChild(editListModalDeleteBtn);
 
 	// Toggle color picker visibility
-	colorPickerBtn.onclick = () => {
-		colorPickerContainer.style.display =
-			colorPickerContainer.style.display === "none" ? "block" : "none";
+	colorPickerBtnEditList.onclick = () => {
+		colorPickerContainerEditList.style.display =
+			colorPickerContainerEditList.style.display === "none" ? "block" : "none";
 	};
 
 	return editListModal;
@@ -105,8 +105,8 @@ function populateEditModal(list) {
 	const nameInput = document.querySelector(".editListModalNameInput");
 	nameInput.value = list.name;
 
-	const colorPickerBtn = editListModal.querySelector(".colorPickerBtn");
-	colorPickerBtn.style.backgroundColor = list.color;
+	const colorPickerBtnEditList = editListModal.querySelector(".colorPickerBtnEditList");
+	colorPickerBtnEditList.style.backgroundColor = list.color;
 
 	if (!colorPicker) {
 		colorPicker = new iro.ColorPicker("#boxPicker", {
@@ -126,18 +126,18 @@ function populateEditModal(list) {
             }],
 		});
 		colorPicker.on("color:change", (color) => {
-			colorPickerBtn.style.backgroundColor = color.hexString;
+			colorPickerBtnEditList.style.backgroundColor = color.hexString;
 		});
 	} else {
 		colorPicker.color.set(list.color);
 	}
 
-	const colorPickerContainer = document.querySelector(
-		".colorPickerContainer"
+	const colorPickerContainerEditList = document.querySelector(
+		".colorPickerContainerEditList"
 	);
-	colorPickerBtn.onclick = () => {
-		colorPickerContainer.style.display =
-			colorPickerContainer.style.display === "none" ? "block" : "none";
+	colorPickerBtnEditList.onclick = () => {
+		colorPickerContainerEditList.style.display =
+			colorPickerContainerEditList.style.display === "none" ? "block" : "none";
 	};
 }
 
