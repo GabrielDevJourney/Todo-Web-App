@@ -6,6 +6,7 @@ import {
 	getTaskListElement,
     getNewTaskModaContainer,
 } from "../components/ModalNewTask";
+import { getListIdNewTaskModal, addTaskToList } from "./listsManager";
 
 let userTasks = [];
 
@@ -15,7 +16,7 @@ function getTaskProperties() {
 		description: getTaskDescriptionElement().value.trim(),
 		priority: getTaskPriorityElement().value,
 		dueDate: new Date(getTaskDueDateElement().value),
-		list: getTaskListElement().value,
+		listId: getListIdNewTaskModal(),
 	};
 
 	console.log("task properties", taskProperties);
@@ -25,18 +26,18 @@ function getTaskProperties() {
 		taskProperties.description,
 		taskProperties.priority,
 		taskProperties.dueDate,
-		taskProperties.list
+		taskProperties.listId
 	);
 }
 
-function createTask(name, description, priority, dueDate, list) {
+function createTask(name, description, priority, dueDate, listId) {
 	return {
-		id: Date.now(), // Unique identifier
+		id: Date.now().toString(), // Unique identifier
 		name,
 		description,
 		priority,
 		dueDate: new Date(dueDate), // Convert to Date object
-		list,
+		listId,
 		completed: false, // Default to not completed
 	};
 }
@@ -51,12 +52,13 @@ function handleTaskSubmit() {
 	const newTask = getTaskProperties();
 	if (newTask) {
 		addTask(newTask);
+        addTaskToList(newTask)
 		clearCloseTaskForm();
+        return newTask
 	} else {
 		alert("Fill all properties");
+        return null
 	}
-
-    console.log('userTasks', userTasks)
 }
 
 function clearCloseTaskForm() {
@@ -76,6 +78,10 @@ function saveTasksToStorage() {
 	} catch (error) {
 		console.error("Error saving tasks to storage:", error);
 	}
+}
+
+function getTasksForList(listId) {
+	return userTasks.filter((task) => task.listId === listId);
 }
 
 function loadTasksFromStorage() {
@@ -100,5 +106,8 @@ function loadTasksFromStorage() {
         userTasks = [];
     }
 }
+function clearUserTasks(){
+    userTasks = []
+}
 
-export { getTaskProperties, loadTasksFromStorage, handleTaskSubmit };
+export { getTaskProperties, loadTasksFromStorage, handleTaskSubmit, clearUserTasks };
