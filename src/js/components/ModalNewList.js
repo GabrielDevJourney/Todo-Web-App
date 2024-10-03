@@ -55,7 +55,6 @@ function createNewListModal() {
 
 	const colorPickerBtn = document.createElement("button");
 	colorPickerBtn.className = "colorPickerBtn";
-	colorPickerBtn.textContent = "List Color";
 	newListModalThemeContainer.appendChild(colorPickerBtn);
 
 	const colorPickerContainer = document.createElement("div");
@@ -81,7 +80,7 @@ function createNewListModal() {
 
 	const newListSubmitBtn = document.createElement("button");
 	newListSubmitBtn.className = "newListSubmitBtn";
-	newListSubmitBtn.textContent = "Add New List";
+	newListSubmitBtn.textContent = "Add List";
 	newListSubmitBtn.addEventListener("click", () => {
 		const nameOfList = newListModalListNameInput.value;
 		const listTheme = colorPickerBtn.style.backgroundColor;
@@ -102,9 +101,7 @@ function createNewListModal() {
 function createColorPicker() {
 	const colorPicker = new iro.ColorPicker("#boxPicker", {
 		width: 150,
-		color: "#f00",
-		borderWidth: 1,
-		borderColor: "#fff",
+		color: "#849B17",
 		layout: [
 			{
 				component: iro.ui.Box,
