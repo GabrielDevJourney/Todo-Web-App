@@ -1,6 +1,89 @@
-.newListModalContainer{
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    background-color: var(--backgroudcolor--);
+.newListModalContainer {
+	position: absolute;
+	padding: 1rem;
+	border-radius: 20px;
+	width: 300px;
+	height: 274px;
+	top: 35%;
+	left: 45%;
+	background-color: var(--backgroudcolor--);
+}
+.newListModalExitBtnContainer {
+	display: flex;
+	justify-content: flex-end;
+}
+.newListModalExitBtn {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+.newListModalHeaderContainer {
+	width: 100%;
+	text-align: center;
+}
+.newListModalHeaderText {
+	font-size: 2rem;
+	color: var(--inputAndSelectMenusTextColor--);
+	font-weight: 300;
+}
+.newListModalPropertiesContainer {
+	margin-top: 1rem;
+}
+.newListModalListNameInput {
+	font-size: 1.2rem;
+	font-weight: 400;
+	width: 80%;
+	height: 2rem;
+	padding-left: 0.5rem;
+	border-radius: 14px;
+	background-color: var(--backgroudcolor--);
+	border: none;
+	color: var(--inputAndSelectMenusTextColor--);
+	border: none;
+	outline: none;
+}
+.newListModalListNameInput:hover {
+	background-color: var(--hovercalendars--);
+}
+.newListModalListNameInput:focus {
+	background-color: transparent;
+	color: var(--inputAndSelectMenusTextColor--);
+}
+.newListModalListNameInput::placeholder {
+	font-weight: 400;
+}
+.newListModalThemeContainer {
+	margin-top: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.themeText {
+	font-size: 1.2rem;
+	font-weight: 400;
+	padding-left: 0.5rem;
+	color: var(--testTextColorNewTaskModalProperties-);
+}
+.colorPickerBtn {
+	background-color: var(--secondary--);
+	border: none;
+	width: 24px;
+	height: 24px;
+	border-radius: 4px;
+}
+.colorPickerContainer {
+	position: absolute;
+	left: 90%;
+}
+.newListSubmitBtn {
+	width: 100%;
+	height: 50px;
+	background-color: transparent;
+	border: 2px solid var(--secondary--);
+	color: var(--inputAndSelectMenusTextColor--);
+	font-size: 1.5rem;
+	text-align: center;
+	border-radius: 20px;
+	font-weight: 300;
+    margin-top: 2rem;
 }
