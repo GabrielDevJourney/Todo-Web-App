@@ -3,15 +3,18 @@ import {
 	deleteList,
 	updateListProperties,
 } from "../data/listsManager";
-import iro from "@jaames/iro";
 import closeIcon from "../../../src/assets/exitIcon.png";
 import {
 	updateListItemInDOM,
 	removeListItemFromDOM,
 } from "../ui/modalsHandler";
+import {
+	initializeColorPicker,
+	removeColorPicker,
+} from "../utils/colorPickerManager";
 
 let editListModal = null;
-let colorPicker = null;
+let editListColorPicker = null;
 
 function openEditListModal(listName) {
 	const lists = getLists();
@@ -34,20 +37,28 @@ function createEditListModal() {
 	const editListModal = document.createElement("div");
 	editListModal.className = "editListModal";
 
-	const editListModalHeader = document.createElement("h2");
-	editListModalHeader.textContent = "Edit List";
-	editListModal.appendChild(editListModalHeader);
+	const editListModalCloseBtnContainer = document.createElement("div");
+	editListModalCloseBtnContainer.className = "editListModalCloseBtnContainer";
+	editListModal.appendChild(editListModalCloseBtnContainer);
 
 	const editListModalCloseBtn = document.createElement("button");
 	editListModalCloseBtn.className = "editListModalCloseBtn";
-	editListModalCloseBtn.onclick = () =>
-		(editListModal.style.display = "none");
-	editListModal.appendChild(editListModalCloseBtn);
+	editListModalCloseBtn.onclick = () =>{
+        editListModal.style.display = "none";
+        removeColorPicker('editListModal')
+        editListColorPicker = null
+    };
+	editListModalCloseBtnContainer.appendChild(editListModalCloseBtn);
 
 	const editListModalCloseBtnIcon = document.createElement("img");
 	editListModalCloseBtnIcon.className = "editListModalCloseBtnIcon";
 	editListModalCloseBtnIcon.src = closeIcon;
 	editListModalCloseBtn.appendChild(editListModalCloseBtnIcon);
+
+	const editListModalHeader = document.createElement("p");
+	editListModalHeader.className = "editListModalHeader";
+	editListModalHeader.textContent = "Edit List";
+	editListModal.appendChild(editListModalHeader);
 
 	const editListModalNameInput = document.createElement("input");
 	editListModalNameInput.className = "editListModalNameInput";
@@ -59,6 +70,7 @@ function createEditListModal() {
 	editListModal.appendChild(editListModalThemeContainer);
 
 	const editListModalThemeText = document.createElement("p");
+	editListModalThemeText.className = "editListModalThemeText";
 	editListModalThemeText.textContent = "Theme";
 	editListModalThemeContainer.appendChild(editListModalThemeText);
 
@@ -95,7 +107,9 @@ function createEditListModal() {
 	// Toggle color picker visibility
 	colorPickerBtnEditList.onclick = () => {
 		colorPickerContainerEditList.style.display =
-			colorPickerContainerEditList.style.display === "none" ? "block" : "none";
+			colorPickerContainerEditList.style.display === "none"
+				? "block"
+				: "none";
 	};
 
 	return editListModal;
@@ -105,39 +119,34 @@ function populateEditModal(list) {
 	const nameInput = document.querySelector(".editListModalNameInput");
 	nameInput.value = list.name;
 
-	const colorPickerBtnEditList = editListModal.querySelector(".colorPickerBtnEditList");
+	const colorPickerBtnEditList = editListModal.querySelector(
+		".colorPickerBtnEditList"
+	);
 	colorPickerBtnEditList.style.backgroundColor = list.color;
 
-	if (!colorPicker) {
-		colorPicker = new iro.ColorPicker("#boxPicker", {
-			width: 150,
-			color: list.color,
-			borderWidth: 1,
-			borderColor: "#fff",
-			layout: [{ 
-                component: iro.ui.Box
-            },
-            {
-                component: iro.ui.Slider,
-                options:{
-                    id:'hue-slider',
-                    sliderType: 'hue'
-                }
-            }],
-		});
-		colorPicker.on("color:change", (color) => {
-			colorPickerBtnEditList.style.backgroundColor = color.hexString;
-		});
-	} else {
-		colorPicker.color.set(list.color);
-	}
+    const colorPickerContainerEditList = document.querySelector(
+        ".colorPickerContainerEditList"
+    );
 
-	const colorPickerContainerEditList = document.querySelector(
-		".colorPickerContainerEditList"
-	);
 	colorPickerBtnEditList.onclick = () => {
 		colorPickerContainerEditList.style.display =
-			colorPickerContainerEditList.style.display === "none" ? "block" : "none";
+			colorPickerContainerEditList.style.display === "none"
+				? "block"
+				: "none";
+
+		if (!editListColorPicker) {
+			editListColorPicker = initializeColorPicker(
+				"editListModal",
+				"boxPicker",
+				list.color,
+				(color) => {
+					colorPickerBtnEditList.style.backgroundColor =
+						color.hexString;
+				}
+			);
+		} else {
+			editListColorPicker.color.set(list.color);
+		}
 	};
 }
 
