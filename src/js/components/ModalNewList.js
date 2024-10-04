@@ -2,6 +2,13 @@ import exitIcon from "../../../src/assets/exitIcon.png";
 import iro from "@jaames/iro";
 import { addNewList } from "../data/listsManager";
 import { addNewListItem } from "./SideBarListsSection";
+import {
+	initializeColorPicker,
+	removeColorPicker,
+} from "../utils/colorPickerManager";
+
+let newListColorPicker = null;
+const defaultColorForPickerBtn = '#849B17'
 
 function createNewListModal() {
 	const newListModalContainer = document.createElement("div");
@@ -55,26 +62,32 @@ function createNewListModal() {
 
 	const colorPickerBtn = document.createElement("button");
 	colorPickerBtn.className = "colorPickerBtn";
+    colorPickerBtn.style.backgroundColor = defaultColorForPickerBtn
 	newListModalThemeContainer.appendChild(colorPickerBtn);
 
 	const colorPickerContainer = document.createElement("div");
-    colorPickerContainer.className = 'colorPickerContainer'
+	colorPickerContainer.className = "colorPickerContainer";
 	colorPickerContainer.style.display = "none";
 	newListModalContainer.appendChild(colorPickerContainer);
 
 	const colorPickerElement = document.createElement("div");
 	colorPickerElement.className = "colorPickerElement";
-	colorPickerElement.id = "boxPicker";
+	colorPickerElement.id = "newListBoxPicker";
 	colorPickerContainer.appendChild(colorPickerElement);
-
-	let colorPicker = null;
 
 	colorPickerBtn.addEventListener("click", () => {
 		colorPickerContainer.style.display =
 			colorPickerContainer.style.display === "none" ? "block" : "none";
 
-		if (!colorPicker) {
-			colorPicker = createColorPicker();
+		if (!newListColorPicker) {
+			newListColorPicker = initializeColorPicker(
+				"newListModal",
+				"newListBoxPicker",
+				"#849B17",
+				(color) => {
+					colorPickerBtn.style.backgroundColor = color.hexString;
+				}
+			);
 		}
 	});
 
@@ -98,31 +111,6 @@ function createNewListModal() {
 	return newListModalContainer;
 }
 
-function createColorPicker() {
-	const colorPicker = new iro.ColorPicker("#boxPicker", {
-		width: 150,
-		color: "#849B17",
-		layout: [
-			{
-				component: iro.ui.Box,
-			},
-			{
-				component: iro.ui.Slider,
-				options: {
-					id: "hue-slider",
-					sliderType: "hue",
-				},
-			},
-		],
-	});
-
-	colorPicker.on("color:change", function (color) {
-		const colorPickerBtn = document.querySelector(".colorPickerBtn");
-		colorPickerBtn.style.backgroundColor = color.hexString;
-	});
-
-	return colorPicker;
-}
 
 function resetModal() {
 	const newListModalContainerHide = document.querySelector(
@@ -136,11 +124,20 @@ function resetModal() {
 	clearListNameInput.value = "";
 
 	// Reset color picker
-	const colorPickerBtn = document.querySelector(".colorPickerBtn");
-	colorPickerBtn.style.backgroundColor = "transparent";
+	resetColorPickerBtnStyle()
 
+	//destroy colorpicker to prevent bugs
+	removeColorPicker("newListModal");
+    newListColorPicker = null
 	// Hide the modal
 	newListModalContainerHide.style.display = "none";
+}
+
+function resetColorPickerBtnStyle(){
+    const colorPickerBtn = document.querySelector(".colorPickerBtn");
+	if (colorPickerBtn) {
+		colorPickerBtn.style.backgroundColor = defaultColorForPickerBtn;
+	}
 }
 
 export { createNewListModal };
