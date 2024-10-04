@@ -1,5 +1,104 @@
-.editListModal{
-    position: absolute;
-    top: 20%;
-    left: 50%;
+.editListModal {
+	position: absolute;
+	padding: 1rem;
+	border-radius: 20px;
+	width: 300px;
+	height: 274px;
+	top: 35%;
+	left: 45%;
+	background-color: var(--backgroudcolor--);
+}
+.editListModalCloseBtnContainer {
+	display: flex;
+	justify-content: end;
+}
+.editListModalCloseBtn {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+.editListModalHeader {
+	width: 100%;
+	text-align: center;
+	font-size: 2rem;
+	color: var(--inputAndSelectMenusTextColor--);
+	font-weight: 300;
+}
+.editListModalNameInput {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+	font-weight: 400;
+	width: 80%;
+	height: 2rem;
+	padding-left: 0.5rem;
+	border-radius: 14px;
+	background-color: var(--backgroudcolor--);
+	border: none;
+	color: var(--inputAndSelectMenusTextColor--);
+	border: none;
+	outline: none;
+}
+.editListModalNameInput:hover{
+    background-color: var(--hovercalendars--);
+}
+.editListModalNameInput:focus {
+	background-color: transparent;
+	color: var(--inputAndSelectMenusTextColor--);
+}
+.editListModalNameInput::placeholder {
+	font-weight: 400;
+}
+.editListModalThemeContainer {
+	margin-top: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.editListModalThemeText {
+	font-size: 1.2rem;
+	font-weight: 400;
+	padding-left: 0.5rem;
+	color: var(--testTextColorNewTaskModalProperties-);
+}
+.colorPickerBtnEditList {
+	background-color: var(--secondary--);
+	border: none;
+	width: 24px;
+	height: 24px;
+	border-radius: 4px;
+}
+.colorPickerContainerEditList {
+	position: absolute;
+	left: 90%;
+    top: 65%;
+}
+.buttonContainer{
+    display: flex;
+    gap: 0.5rem;
+}
+.editListModalUpdateBtn{
+    width: 50%;
+	height: 50px;
+	background-color: transparent;
+	border: 2px solid var(--secondary--);
+	color: var(--secondary--);
+	font-size: 1.5rem;
+	text-align: center;
+	border-radius: 20px;
+	font-weight: 300;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+.editListModalDeleteBtn{
+    width: 50%;
+	height: 50px;
+	background-color: transparent;
+	border: 2px solid #9B1717;
+	color: #9B1717;
+	font-size: 1.5rem;
+	text-align: center;
+	border-radius: 20px;
+	font-weight: 300;
+    margin-top: 2rem;
+    cursor: pointer;
 }
