@@ -32,7 +32,10 @@ function createSidebarCalendarsItem(item) {
 
 	const textElement = document.createElement("span");
 	textElement.textContent = name;
-	textElement.className = `sidebarItemText${name.replace(/\s+/g, "")}`;
+	textElement.className = `sidebarItemText sidebarItemText${name.replace(
+		/\s+/g,
+		""
+	)}`;
     sidebarItemBtn.appendChild(textElement);
 
     if(name === 'Add Task'){
