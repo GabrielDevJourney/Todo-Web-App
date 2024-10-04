@@ -5,7 +5,9 @@ function updateListItemInDOM(oldName, newName, newColor) {
 	if (listItem) {
 		listItem.dataset.listName = newName;
 
-        const colorPickerContainer = document.querySelector('.colorPickerContainer')
+        const colorPickerContainer = document.querySelector(
+			".colorPickerContainerEditList"
+		);
 		const listItemNewName = listItem.querySelector(".listItemTextName");
 		const listItemNewColor = listItem.querySelector(
 			".listItemColorDisplay"
