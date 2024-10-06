@@ -17,7 +17,7 @@ function getLists() {
 	return Object.values(userLists);
 }
 function getListsRealObject() {
-	return userLists;
+	return {...userLists};
 }
 
 function deleteList(name) {
@@ -61,21 +61,36 @@ function updateListProperties(oldName, newName, newColor) {
 
 function getListIdNewTaskModal() {
 	const selectedList = document.querySelector(".listsDropdown").value;
-	if (userLists[selectedList]) {
+
+	if (userLists && userLists[selectedList]) {
 		console.log("listId", userLists[selectedList].listId);
 		return userLists[selectedList].listId;
 	}
+    console.log("No list selected or list not found");
+    
 	return null;
 }
 
 function addTaskToList(task) {
-	const list = getLists().find((list) => list.listId === task.listId);
+    //get current list option id when submiting new task
+    const listId = getListIdNewTaskModal();
+    if(!listId){
+        console.error('no valid list selected')
+        return
+    }
 
+    const list = Object.values(userLists).find(
+		(list) => list.listId === listId
+	);
+    console.log('list', list );
+    
 	if (list) {
 		list.tasks.push(task);
 		saveListToStorage();
+        console.log("Task added successfully to list:", listId)
+        return true
 	} else {
-		console.log("list not found for task", task);
+		console.log("list not found");
 	}
 }
 export {
