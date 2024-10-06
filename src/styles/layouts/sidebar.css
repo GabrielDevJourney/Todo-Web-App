@@ -4,6 +4,7 @@
 @import '../components/modalEditList.css';
 @import '../components/sidebarLineSeperator.css';
 @import '../components/sidebarListSection.css';
+@import '../components/collapseSidebar.css';
 
 .sidebarMainContainer{
     background-color: var(--backgroudcolor--);

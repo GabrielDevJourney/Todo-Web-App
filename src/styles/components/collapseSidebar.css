@@ -1,0 +1,107 @@
+/* Default sidebar styles (expanded state) */
+.sidebarMainContainer {
+	transition: all 0.3s ease !important;
+	/* Set to  default width*/
+	width: 250px; 
+}
+
+/* Main sidebar container */
+body .collapsed-sidebar {
+	width: 100px !important;
+	border-radius: 20px !important;
+	transition: all 0.3s ease !important;
+}
+
+/* Header container */
+body .collapsed-sidebar .sidebarHeaderContainer {
+	display: flex !important;
+	justify-content: center !important;
+}
+
+/* Hide logo text */
+body .collapsed-sidebar .logoTextContainer {
+	display: none !important;
+}
+
+/* Calendar items */
+body .collapsed-sidebar .sidebarCalendarsItem {
+	display: flex !important;
+	justify-content: center !important;
+}
+
+/* Sidebar item buttons */
+body .collapsed-sidebar .sidebarItemBtn {
+	width: 40px !important;
+	padding-left: 0px !important;
+}
+
+/* Hide sidebar item text */
+body .collapsed-sidebar .sidebarItemText {
+	display: none !important;
+}
+
+/* List section header */
+body .collapsed-sidebar .listSectionHeaderContainer {
+	display: flex !important;
+	justify-content: center !important;
+}
+
+/* Hide list header text */
+body .collapsed-sidebar .listHeaderText {
+	display: none !important;
+}
+
+/* Lists view */
+body .collapsed-sidebar .listsView {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+}
+
+/* List items */
+body .collapsed-sidebar .listItem {
+	width: 40px !important;
+	display: flex !important;
+	justify-content: center !important;
+}
+
+/* Hide list item text names */
+body .collapsed-sidebar .listItemTextName {
+	display: none !important;
+}
+
+/* Hide collapse button and show open sidebar button */
+body .collapsed-sidebar .colapseBtn {
+	display: none !important;
+}
+
+body .collapsed-sidebar .openSidebarBtn {
+	display: block !important;
+}
+
+/* Transition for elements that change display property */
+.sidebarMainContainer .logoTextContainer,
+.sidebarMainContainer .sidebarItemText,
+.sidebarMainContainer .listHeaderText,
+.sidebarMainContainer .listItemTextName,
+.sidebarMainContainer .colapseBtn,
+.sidebarMainContainer .openSidebarBtn {
+	transition: opacity 0.3s ease, visibility 0.3s ease !important;
+}
+
+.collapsed-sidebar .logoTextContainer,
+.collapsed-sidebar .sidebarItemText,
+.collapsed-sidebar .listHeaderText,
+.collapsed-sidebar .listItemTextName,
+.collapsed-sidebar .colapseBtn {
+	opacity: 0 !important;
+    /* this allows me to create the fade in/out unlike the display to none
+        because i can remove the element and still make the transitions
+    */
+	visibility: hidden !important;
+}
+
+.collapsed-sidebar .openSidebarBtn {
+	opacity: 1 !important;
+	visibility: visible !important;
+}
