@@ -1,7 +1,7 @@
 import iconLogoSideBar from "../../../src/assets/logoToDoHeaderSiderBar.svg";
 import colapseIcon from "../../../src/assets/sidebarColapseIcon.svg";
 import openSidebarIcon from "../../../src/assets/sidebarOpenIcon.svg";
-import { colapseSidebar } from "./SidebarColapseFeature";
+import { colapseSidebar, expandSidebar } from "./SidebarColapseFeature";
 
 export function createSidebarHeader() {
 	const logoTextColapseContainer = document.createElement("div");
@@ -43,6 +43,7 @@ export function createSidebarHeader() {
 	openSidebarBtn.className = "openSidebarBtn";
 	openSidebarBtn.innerHTML = `<img src="${openSidebarIcon}" alt="Open Sidebar">`;
 	openSidebarBtn.style.display = "none";
+    openSidebarBtn.addEventListener('click', expandSidebar)
 	colapseAndOpenIconsContainer.appendChild(openSidebarBtn);
 
 	return logoTextColapseContainer;
