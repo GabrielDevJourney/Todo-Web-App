@@ -1,14 +1,21 @@
 import { prioritiesArray } from "../data/prioritiesManager";
 import { getLists } from "../data/listsManager";
 import { dropdownItems } from "../data/newTaskModalDropItemsManager";
-import {  handleTaskSubmit } from "../data/tasksManager";
-import addTaskModalExitIcon from '../../../src/assets/exitIcon.png'
-import {formatDateToDisplay,setMaxDateForInput, setMinDateForInput,getToday, defaultDateFormat,parseDate} from '../data/dateHandler'
+import { handleTaskSubmit } from "../data/tasksManager";
+import addTaskModalExitIcon from "../../../src/assets/exitIcon.png";
+import {
+	formatDateToDisplay,
+	setMaxDateForInput,
+	setMinDateForInput,
+	getToday,
+	defaultDateFormat,
+	parseDate,
+} from "../data/dateHandler";
 
 //export
 function createNewTaskModal() {
 	const addNewTaskModalContainer = document.createElement("div");
-    addNewTaskModalContainer.style.display = 'block'
+	addNewTaskModalContainer.style.display = "block";
 	addNewTaskModalContainer.className = "addNewTaskModalContainer";
 
 	const headerAndExitContainer = document.createElement("div");
@@ -22,54 +29,60 @@ function createNewTaskModal() {
 
 	const addNewTaskModalExitBtn = document.createElement("button");
 	addNewTaskModalExitBtn.className = "addNewTaskModalExitBtn";
-    addNewTaskModalExitBtn.addEventListener('click', () => {
-        addNewTaskModalContainer.style.display = 'none'
-    })
+	addNewTaskModalExitBtn.addEventListener("click", () => {
+		addNewTaskModalContainer.style.display = "none";
+	});
 	headerAndExitContainer.appendChild(addNewTaskModalExitBtn);
 
-    const addNewTaskModalExitIcon = document.createElement('img')
-    addNewTaskModalExitIcon.className = 'addNewTaskModalExitIcon'
-    addNewTaskModalExitIcon.src = addTaskModalExitIcon
-    addNewTaskModalExitBtn.appendChild(addNewTaskModalExitIcon)
+	const addNewTaskModalExitIcon = document.createElement("img");
+	addNewTaskModalExitIcon.className = "addNewTaskModalExitIcon";
+	addNewTaskModalExitIcon.src = addTaskModalExitIcon;
+	addNewTaskModalExitBtn.appendChild(addNewTaskModalExitIcon);
 
 	const addNewTaskModalNameAndDescription = document.createElement("div");
-	addNewTaskModalNameAndDescription.className = "addNewTaskModalNameAndDescription";   
-    addNewTaskModalContainer.appendChild(addNewTaskModalNameAndDescription)
+	addNewTaskModalNameAndDescription.className =
+		"addNewTaskModalNameAndDescription";
+	addNewTaskModalContainer.appendChild(addNewTaskModalNameAndDescription);
 
 	const addNewTaskModalInputTaskName = document.createElement("input");
 	addNewTaskModalInputTaskName.className = "addNewTaskModalInputTaskName";
-    addNewTaskModalInputTaskName.placeholder = 'Task Name'
+	addNewTaskModalInputTaskName.placeholder = "Task Name";
 	addNewTaskModalNameAndDescription.appendChild(addNewTaskModalInputTaskName);
 
 	const addNewTaskModalInputTaskDescription = document.createElement("input");
 	addNewTaskModalInputTaskDescription.className =
 		"addNewTaskModalInputTaskDescription";
-    addNewTaskModalInputTaskDescription.placeholder = 'Task Description'
+	addNewTaskModalInputTaskDescription.placeholder = "Task Description";
 	addNewTaskModalNameAndDescription.appendChild(
 		addNewTaskModalInputTaskDescription
 	);
 
 	const taskPropertiesContainer = document.createElement("div");
 	taskPropertiesContainer.className = "taskPropertiesContainer";
-    addNewTaskModalContainer.appendChild(taskPropertiesContainer);
+	addNewTaskModalContainer.appendChild(taskPropertiesContainer);
 
-	dropdownItems.forEach(item => {
-        const itemCotainer = createItemsContainer(item.icon, item.label, item.type)
-        taskPropertiesContainer.appendChild(itemCotainer)
-        itemCotainer.className = `itemCotainer${item.label}`
-    })
+	dropdownItems.forEach((item) => {
+		const itemCotainer = createItemsContainer(
+			item.icon,
+			item.label,
+			item.type
+		);
+		taskPropertiesContainer.appendChild(itemCotainer);
+		itemCotainer.className = `itemCotainer${item.label}`;
+	});
 
-    const newTaskSubmitBtn = document.createElement('button')
-    newTaskSubmitBtn.className = 'newTaskSubmitBtn'
-    newTaskSubmitBtn.type = 'submit'
-    newTaskSubmitBtn.value = 'Add Task'
-    newTaskSubmitBtn.textContent = 'Add Task'
-    newTaskSubmitBtn.addEventListener('click', (event) => {
-        event.preventDefault()
-        handleTaskSubmit()
-    })
-    addNewTaskModalContainer.appendChild(newTaskSubmitBtn)
+	const newTaskSubmitBtn = document.createElement("button");
+	newTaskSubmitBtn.className = "newTaskSubmitBtn";
+	newTaskSubmitBtn.type = "submit";
+	newTaskSubmitBtn.value = "Add Task";
+	newTaskSubmitBtn.textContent = "Add Task";
+	newTaskSubmitBtn.addEventListener("click", (event) => {
+		console.log("handletasksubmit", new Date().toISOString());
 
+		event.preventDefault();
+		handleTaskSubmit(event);
+	});
+	addNewTaskModalContainer.appendChild(newTaskSubmitBtn);
 
 	return addNewTaskModalContainer;
 }
@@ -97,7 +110,7 @@ function createIconLabel(icon, label) {
 	iconAndLabelContainer.appendChild(iconElement);
 
 	const labelElement = document.createElement("span");
-    labelElement.className = 'newTaskLabelText'
+	labelElement.className = "newTaskLabelText";
 	labelElement.textContent = label;
 	iconAndLabelContainer.appendChild(labelElement);
 
@@ -114,7 +127,7 @@ function createInput(type) {
 			return createListDropdown();
 		default:
 			console.log("no lists available");
-            return document.createElement('div')
+			return document.createElement("div");
 	}
 }
 
@@ -123,7 +136,7 @@ function createPriorityDropdown() {
 	selectDropdown.className = "priorityeDropdown";
 	prioritiesArray.forEach((priority) => {
 		const option = document.createElement("option");
-        option.className = 'optionSelected'
+		option.className = "optionSelected";
 		option.value = priority.priorityLevel.toLowerCase();
 		option.textContent = priority.priorityLevel;
 		selectDropdown.appendChild(option);
@@ -132,40 +145,40 @@ function createPriorityDropdown() {
 }
 
 function createDatePicker() {
-    const dateInputContainer = document.createElement('div')
-    dateInputContainer.className = 'dateInputContainer'
+	const dateInputContainer = document.createElement("div");
+	dateInputContainer.className = "dateInputContainer";
 
-    const dateDisplay = document.createElement("div");
+	const dateDisplay = document.createElement("div");
 	dateDisplay.className = "dateDisplay";
 	dateInputContainer.appendChild(dateDisplay);
 
 	const dateInput = document.createElement("input");
 	dateInput.className = "dateInput";
 	dateInput.type = "date";
-    dateInputContainer.appendChild(dateInput)
-    
+	dateInputContainer.appendChild(dateInput);
+
 	const today = getToday();
 	dateInput.value = defaultDateFormat(today);
 
 	dateInput.min = setMinDateForInput(today);
 
-	const maxDate = setMaxDateForInput(today)
+	const maxDate = setMaxDateForInput(today);
 	dateInput.max = defaultDateFormat(maxDate);
 
-    updateDateDisplayContainer(today)
+	updateDateDisplayContainer(today);
 
 	dateInput.addEventListener("change", (e) => {
-		const selectedDate = parseDate(e.target.value)
+		const selectedDate = parseDate(e.target.value);
 		console.log("selected date", formatDateToDisplay(selectedDate));
-        updateDateDisplayContainer(selectedDate)
+		updateDateDisplayContainer(selectedDate);
 	});
-    dateDisplay.addEventListener("click", () => {
+	dateDisplay.addEventListener("click", () => {
 		dateInput.showPicker();
 	});
 
-    function updateDateDisplayContainer(date){
-        dateDisplay.textContent = formatDateToDisplay(date)
-    }
+	function updateDateDisplayContainer(date) {
+		dateDisplay.textContent = formatDateToDisplay(date);
+	}
 	return dateInputContainer;
 }
 
@@ -180,7 +193,7 @@ function createListDropdown() {
 	defaultOption.selected = true;
 	listsDropdown.appendChild(defaultOption);
 
-    const lists = getLists();
+	const lists = getLists();
 	lists.forEach((list) => {
 		const option = document.createElement("option");
 		option.value = list.name;
@@ -191,20 +204,39 @@ function createListDropdown() {
 	return listsDropdown;
 }
 
-
 //todo add this fucntionality to the exit modal btn
 // function exitAndClearInputsNewTaskModal() {}
 
 export { createNewTaskModal };
-export const getTaskNameElement = () =>
-	document.querySelector(".addNewTaskModalInputTaskName");
-export const getTaskDescriptionElement = () =>
-	document.querySelector(".addNewTaskModalInputTaskDescription");
-export const getTaskPriorityElement = () =>
-	document.querySelector(".priorityeDropdown");
-export const getTaskDueDateElement = () => document.querySelector(".dateInput");
-export const getTaskListElement = () =>
-	document.querySelector(".listsDropdown");
-export const getNewTaskModaContainer = () => document.querySelector(
-	".addNewTaskModalContainer"
-);
+export const getTaskNameElement = () => {
+	const element = document.querySelector(".addNewTaskModalInputTaskName");
+	if (!element) console.error("Task name element not found");
+	return element;
+};
+export const getTaskDescriptionElement = () => {
+	const element = document.querySelector(
+		".addNewTaskModalInputTaskDescription"
+	);
+	if (!element) console.error("Task name element not found");
+	return element;
+};
+export const getTaskPriorityElement = () => {
+	const element = document.querySelector(".priorityeDropdown");
+	if (!element) console.error("Task name element not found");
+	return element;
+};
+export const getTaskDueDateElement = () => {
+	const element = document.querySelector(".dateInput");
+	if (!element) console.error("Task name element not found");
+	return element;
+};
+export const getTaskListElement = () => {
+	const element = document.querySelector(".listsDropdown");
+	if (!element) console.error("Task name element not found");
+	return element;
+};
+export const getNewTaskModaContainer = () => {
+	const element = document.querySelector(".addNewTaskModalContainer");
+	if (!element) console.error("Task name element not found");
+	return element;
+};
