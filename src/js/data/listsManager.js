@@ -60,15 +60,27 @@ function updateListProperties(oldName, newName, newColor) {
 }
 
 function getListIdNewTaskModal() {
-	const selectedList = document.querySelector(".listsDropdown").value;
-
-	if (userLists && userLists[selectedList]) {
-		console.log("listId", userLists[selectedList].listId);
-		return userLists[selectedList].listId;
+	const listDropdown = document.querySelector(".listsDropdown");
+	if (!listDropdown) {
+		console.error("List dropdown not found");
+		return null;
 	}
-    console.log("No list selected or list not found");
-    
-	return null;
+
+	const selectedList = listDropdown.value;
+	if (!selectedList) {
+		console.error("No list selected");
+		return null;
+	}
+
+	const list = Object.values(userLists).find(
+		(list) => list.name === selectedList
+	);
+	if (!list) {
+		console.error("Selected list not found");
+		return null;
+	}
+
+	return list.listId;
 }
 
 function addTaskToList(task) {
