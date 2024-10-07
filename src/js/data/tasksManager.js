@@ -3,10 +3,10 @@ import {
 	getTaskDescriptionElement,
 	getTaskPriorityElement,
 	getTaskDueDateElement,
-	getTaskListElement,
-    getNewTaskModaContainer,
+
 } from "../components/ModalNewTask";
 import { getListIdNewTaskModal, addTaskToList } from "./listsManager";
+import { closeNewTaskModal } from "../components/ModalNewTask";
 
 let userTasks = [];
 
@@ -48,27 +48,16 @@ function addTask(task) {
 }
 
 function handleTaskSubmit() {
-
 	const newTask = getTaskProperties();
-	if (newTask) {
+	if (newTask && newTask.listId) {
 		addTask(newTask);
-        addTaskToList(newTask)
-		clearCloseTaskForm();
-        return newTask
+		addTaskToList(newTask);
+		closeNewTaskModal();
+		return newTask;
 	} else {
 		alert("Fill all properties");
-        return null
+		return null;
 	}
-}
-
-function clearCloseTaskForm() {
-	getTaskNameElement().value = "";
-	getTaskDescriptionElement().value = "";
-	getTaskPriorityElement().value = ""; // Or set to default
-	getTaskDueDateElement().value = ""; // Or set to today
-	getTaskListElement().value = "";
-    const newTaskModal = getNewTaskModaContainer()
-    newTaskModal.style.display = 'none'
 }
 
 function saveTasksToStorage() {
@@ -80,34 +69,36 @@ function saveTasksToStorage() {
 	}
 }
 
-function getTasksForList(listId) {
-	return userTasks.filter((task) => task.listId === listId);
-}
 
 function loadTasksFromStorage() {
-    const storedTasks = localStorage.getItem('userTasks');
-    if (storedTasks) {
-        try {
-            userTasks = JSON.parse(storedTasks);
-            
-            // Convert date strings back to Date objects
-            userTasks = userTasks.map(task => ({
-                ...task,
-                dueDate: new Date(task.dueDate)
-            }));
+	const storedTasks = localStorage.getItem("userTasks");
+	if (storedTasks) {
+		try {
+			userTasks = JSON.parse(storedTasks);
 
-            console.log('Tasks loaded from storage:', userTasks);
-        } catch (error) {
-            console.error('Error parsing tasks from storage:', error);
-            userTasks = [];
-        }
-    } else {
-        console.log('No tasks found in storage');
-        userTasks = [];
-    }
+			// Convert date strings back to Date objects
+			userTasks = userTasks.map((task) => ({
+				...task,
+				dueDate: new Date(task.dueDate),
+			}));
+
+			console.log("Tasks loaded from storage:", userTasks);
+		} catch (error) {
+			console.error("Error parsing tasks from storage:", error);
+			userTasks = [];
+		}
+	} else {
+		console.log("No tasks found in storage");
+		userTasks = [];
+	}
 }
-function clearUserTasks(){
-    userTasks = []
+function clearUserTasks() {
+	userTasks = [];
 }
 
-export { getTaskProperties, loadTasksFromStorage, handleTaskSubmit, clearUserTasks };
+export {
+	getTaskProperties,
+	loadTasksFromStorage,
+	handleTaskSubmit,
+	clearUserTasks,
+};
