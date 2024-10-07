@@ -1,8 +1,8 @@
-import noPriorityIcon from '../../../src/assets/noPriorityTaskIcon.png'
-import lowPriorityIcon from "../../../src/assets/lowPriorityTaskIcon.png";
-import mediumPriorityIcon from "../../../src/assets/mediumPriorityTaskIcon.png";
-import highPriorityIcon from "../../../src/assets/highPriorityTaskIcon.png";
-import urgentPriorityIcon from "../../../src/assets/urgentPriorityTaskIcon.png";
+import noPriorityIcon from '../../../src/assets/noPriorityTaskIcon.svg'
+import lowPriorityIcon from "../../../src/assets/lowPriorityTaskIcon.svg";
+import mediumPriorityIcon from "../../../src/assets/mediumPriorityTaskIcon.svg";
+import highPriorityIcon from "../../../src/assets/highPriorityTaskIcon.svg";
+import urgentPriorityIcon from "../../../src/assets/urgentPriorityTaskIcon.svg";
 
 const prioritiesArray = [
 	{
