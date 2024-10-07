@@ -12,6 +12,7 @@ import {
 	parseDate,
 } from "../data/dateHandler";
 
+let currentModalInstance = null
 //export
 function createNewTaskModal() {
 	const addNewTaskModalContainer = document.createElement("div");
@@ -204,10 +205,46 @@ function createListDropdown() {
 	return listsDropdown;
 }
 
+function showNewTaskModal() {
+	if (currentModalInstance) {
+		document.body.removeChild(currentModalInstance);
+	}
+
+	currentModalInstance = createNewTaskModal();
+	document.body.appendChild(currentModalInstance);
+
+	// Set default values
+	const dateInput = currentModalInstance.querySelector(".dateInput");
+	if (dateInput) {
+		const today = getToday();
+		dateInput.value = defaultDateFormat(today);
+		formatDateToDisplay(today);
+	}
+
+	const priorityDropdown =
+		currentModalInstance.querySelector(".priorityeDropdown");
+	if (priorityDropdown) {
+		priorityDropdown.selectedIndex = 0;
+	}
+
+	const listDropdown = currentModalInstance.querySelector(".listsDropdown");
+	if (listDropdown) {
+		listDropdown.selectedIndex = 0;
+	}
+}
+
+function closeNewTaskModal() {
+	if (currentModalInstance) {
+		document.body.removeChild(currentModalInstance);
+		currentModalInstance = null;
+	}
+}
+
+
 //todo add this fucntionality to the exit modal btn
 // function exitAndClearInputsNewTaskModal() {}
 
-export { createNewTaskModal };
+export { createNewTaskModal, closeNewTaskModal, showNewTaskModal };
 export const getTaskNameElement = () => {
 	const element = document.querySelector(".addNewTaskModalInputTaskName");
 	if (!element) console.error("Task name element not found");
