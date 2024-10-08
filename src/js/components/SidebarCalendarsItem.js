@@ -1,4 +1,5 @@
 import { calendarsTypes } from "../data/calendarsManager"
+import { getNameOfCalendar } from "./MainContentHeader"
 import { showNewTaskModal } from "./ModalNewTask"
 
 export function generateSidebarItems(itemsArray){
@@ -38,6 +39,10 @@ function createSidebarCalendarsItem(item) {
 	)}`;
     sidebarItemBtn.appendChild(textElement);
 
+    sidebarItemBtn.addEventListener('click', () => {
+        getNameOfCalendar(name)
+    })
+    
     if(name === 'Add Task'){
         sidebarItemBtn.addEventListener('click', () => {
             showNewTaskModal()
