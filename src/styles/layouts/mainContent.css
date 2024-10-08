@@ -1,0 +1,11 @@
+@import '../components/mainContentHeader.css';
+
+.mainContentContainer{
+    background-color: var(--backgroudcolor--);
+    margin: 1rem 2rem 1rem 1rem;
+    width: 1200px;
+    height: 97vh;
+    border-radius: 50px;
+    z-index: 1;
+    position: relative;
+}

@@ -1,15 +1,17 @@
-@import '../components/sidebarHeader.css';
-@import '../components/sidebarCalendarsView.css';
-@import '../components/modalNewList.css';
-@import '../components/modalEditList.css';
-@import '../components/sidebarLineSeperator.css';
-@import '../components/sidebarListSection.css';
-@import '../components/collapseSidebar.css';
+@import "../components/sidebarHeader.css";
+@import "../components/sidebarCalendarsView.css";
+@import "../components/modalNewList.css";
+@import "../components/modalEditList.css";
+@import "../components/sidebarLineSeperator.css";
+@import "../components/sidebarListSection.css";
+@import "../components/collapseSidebar.css";
 
-.sidebarMainContainer{
-    background-color: var(--backgroudcolor--);
-    margin: 1rem;
-    width: 300px;
-    height: 97vh;
-    border-radius: 50px;
+.sidebarMainContainer {
+	background-color: var(--backgroudcolor--);
+	margin: 1rem 1rem 1rem 2rem;
+	width: 300px;
+	height: 97vh;
+	border-radius: 50px;
+	z-index: 1;
+	position: relative;
 }
