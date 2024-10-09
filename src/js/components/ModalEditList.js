@@ -12,6 +12,7 @@ import {
 	initializeColorPicker,
 	removeColorPicker,
 } from "../utils/colorPickerManager";
+import { unblurSidebarMainContent } from "./ModalNewTask";
 
 let editListModal = null;
 let editListColorPicker = null;
@@ -47,6 +48,7 @@ function createEditListModal() {
         editListModal.style.display = "none";
         removeColorPicker('editListModal')
         editListColorPicker = null
+        unblurSidebarMainContent()
     };
 	editListModalCloseBtnContainer.appendChild(editListModalCloseBtn);
 
@@ -95,13 +97,19 @@ function createEditListModal() {
 	const editListModalUpdateBtn = document.createElement("button");
 	editListModalUpdateBtn.className = "editListModalUpdateBtn";
 	editListModalUpdateBtn.textContent = "Update";
-	editListModalUpdateBtn.onclick = saveListChanges;
+	editListModalUpdateBtn.addEventListener('click', () =>{
+        saveListChanges()
+        unblurSidebarMainContent()
+    } ) 
 	buttonContainer.appendChild(editListModalUpdateBtn);
 
 	const editListModalDeleteBtn = document.createElement("button");
 	editListModalDeleteBtn.className = "editListModalDeleteBtn";
 	editListModalDeleteBtn.textContent = "Delete";
-	editListModalDeleteBtn.onclick = deleteListItem;
+	editListModalDeleteBtn.addEventListener("click", () => {
+		deleteList();
+		unblurSidebarMainContent();
+	}); 
 	buttonContainer.appendChild(editListModalDeleteBtn);
 
 	// Toggle color picker visibility
