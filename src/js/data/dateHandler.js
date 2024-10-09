@@ -14,6 +14,9 @@ export function formatDateToDisplay(date) {
 export function defaultDateFormat(date){
     return format(date, 'yyyy-MM-dd')
 }
+export function formatToDisplayOnlyDayToday(date){
+    return format(date,"d" )
+}
 
 // Parse string to Date object
 export function parseDate(dateString) {
