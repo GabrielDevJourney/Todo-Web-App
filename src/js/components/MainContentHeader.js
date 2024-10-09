@@ -1,4 +1,6 @@
 import addNewTaskIcon from "../../../src/assets/addCircleIcon.svg";
+import { getToday, formatToDisplayOnlyDayToday } from "../data/dateHandler";
+import { showNewTaskModal } from "./ModalNewTask";
 function createMainContentHeader(){
     const mainContentHeaderContainer = document.createElement('div')
     mainContentHeaderContainer.className = 'mainContentHeaderContainer'
@@ -19,9 +21,9 @@ function createMainContentHeader(){
 	);
 
     const mainContentHeaderCalendaDisplayDay = document.createElement('p')
+    mainContentHeaderCalendaDisplayDay.textContent = formatToDisplayOnlyDayToday(getToday())
     mainContentHeaderCalendaDisplayDay.className =
 		"mainContentHeaderCalendaDisplayDay";
-    mainContentHeaderCalendaDisplayDay.textContent = 'aaa'
     mainContentHeaderCalendarDisplayContainer.appendChild(
 		mainContentHeaderCalendaDisplayDay
 	);
@@ -33,6 +35,7 @@ function createMainContentHeader(){
 
     const mainContentHeaderAddTaskBtn = document.createElement('button')
     mainContentHeaderAddTaskBtn.className = "mainContentHeaderAddTaskBtn";
+    mainContentHeaderAddTaskBtn.addEventListener("click", showNewTaskModal);
     mainContentHeaderAddTaskContainer.appendChild(mainContentHeaderAddTaskBtn);
 
     const mainContentHeaderAddTaskBtnIcon = document.createElement('img')

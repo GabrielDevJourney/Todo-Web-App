@@ -1,19 +1,53 @@
 .mainContentHeaderContainer {
 	width: 100%;
-	height: 20%;
+	height: auto;
 	padding: 2rem;
 }
 .mainContentHeaderCalendarDisplayContainer {
 	width: 100%;
 	height: 60%;
+    align-items: center;
 	display: flex;
 }
+.mainContentHeaderCalendaDisplayDay,
 .mainContentHeaderCalendaDisplayView {
-	font-size: 2rem;
 	font-weight: 600;
-	padding-right: 1rem;
 	text-align: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+    color: var(--inputAndSelectMenusTextColor--);
+}
+
+.mainContentHeaderCalendaDisplayView {
+    font-size: 3rem;
+    width: auto;
+    padding-right: 1rem;
+}
+.mainContentHeaderCalendaDisplayDay {
+	font-size: 2rem;
+    width: 50px;
+    height: 50px;
+	border: 2px solid var(--secondary--);
+	border-radius: 8px;
+}
+
+.mainContentHeaderAddTaskContainer{
+    margin-top: 1rem;
+}
+.mainContentHeaderAddTaskBtn{
+    width: 90%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--secondary--);
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: transparent;
+    padding-left: 1rem;
+    gap: 1rem;
+}
+.mainContentHeaderAddTaskBtnText{
+    font-size: 2rem;
+    color: var(--inputAndSelectMenusTextColor--);
 }
