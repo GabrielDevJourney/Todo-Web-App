@@ -159,8 +159,17 @@ function populateEditModal(list) {
 }
 
 function saveListChanges() {
+
+        if (!editListColorPicker) {
+			console.error("Color picker not initialized");
+			alert(
+				"There was an issue with the color picker. Please try again."
+			);
+			return;
+		}
+        
 	const newName = document.querySelector(".editListModalNameInput").value;
-	const newColor = colorPicker.color.hexString;
+	const newColor = editListColorPicker.color.hexString;
 	const oldName = editListModal.dataset.listName;
 
 	if (updateListProperties(oldName, newName, newColor)) {
