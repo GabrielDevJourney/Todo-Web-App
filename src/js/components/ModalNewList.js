@@ -6,6 +6,7 @@ import {
 	initializeColorPicker,
 	removeColorPicker,
 } from "../utils/colorPickerManager";
+import { unblurSidebarMainContent } from "./ModalNewTask";
 
 let newListColorPicker = null;
 const defaultColorForPickerBtn = '#849B17'
@@ -22,6 +23,7 @@ function createNewListModal() {
 	newListModalExitBtn.className = "newListModalExitBtn";
 	newListModalExitBtn.addEventListener("click", () => {
 		resetModal();
+        unblurSidebarMainContent()
 	});
 	newListModalExitBtnContainer.appendChild(newListModalExitBtn);
 
@@ -101,6 +103,7 @@ function createNewListModal() {
 			const newList = { name: nameOfList, color: listTheme };
 			addNewListItem(newList);
 			resetModal();
+            unblurSidebarMainContent()
 		} else {
 			// Handle the case where the list wasn't added (e.g., duplicate name)
 			alert("List name already exists. Please choose a different name.");

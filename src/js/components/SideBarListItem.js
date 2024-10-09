@@ -1,5 +1,6 @@
 import editListItemIcon from "../../../src/assets/editListItemIcon.svg";
 import { openEditListModal } from "./ModalEditList";
+import { blurSidebarMainContent } from "./ModalNewTask";
 
 export function createListItem(list) {
 	const listItemContainer = document.createElement("div");
@@ -21,6 +22,7 @@ export function createListItem(list) {
     listItemEditBtn.addEventListener('click', () => {
         console.log('edit btn for list', list.name)
         openEditListModal(list.name)
+        blurSidebarMainContent()
     })
 	listItemContainer.appendChild(listItemEditBtn);
 
@@ -28,9 +30,6 @@ export function createListItem(list) {
 	listItemEditBtnIcon.className = "listItemEditBtnIcon";
 	listItemEditBtnIcon.src = editListItemIcon;
 	listItemEditBtnIcon.alt = "Pencil icon inside a square";
-    listItemEditBtn.addEventListener('click', () => {
-        openEditListModal(list.name)
-    })
 	listItemEditBtn.appendChild(listItemEditBtnIcon);
 
 	return listItemContainer;

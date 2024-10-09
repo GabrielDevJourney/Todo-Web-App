@@ -2,6 +2,7 @@ import addIcon from "../../../src/assets/addNewListBtnIcon.svg";
 import { getLists, loadListsFromStorage } from "../data/listsManager.js";
 import { createListItem } from "./SideBarListItem.js";
 import { createNewListModal } from "./ModalNewList.js";
+import { blurSidebarMainContent } from "./ModalNewTask.js";
 
 function createSidebarListSection() {
 	const listSectionContainer = document.createElement("div");
@@ -27,6 +28,7 @@ function createSidebarListSection() {
 		} else {
 			newListModal.style.display = "block";
 		}
+        blurSidebarMainContent()
 	});
 	listSectionHeaderContainer.appendChild(addNewListBtn);
 

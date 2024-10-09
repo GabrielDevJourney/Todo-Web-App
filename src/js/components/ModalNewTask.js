@@ -12,7 +12,7 @@ import {
 	parseDate,
 } from "../data/dateHandler";
 
-let currentModalInstance = null
+let currentModalInstance = null;
 //export
 function createNewTaskModal() {
 	const addNewTaskModalContainer = document.createElement("div");
@@ -31,7 +31,7 @@ function createNewTaskModal() {
 	const addNewTaskModalExitBtn = document.createElement("button");
 	addNewTaskModalExitBtn.className = "addNewTaskModalExitBtn";
 	addNewTaskModalExitBtn.addEventListener("click", () => {
-		addNewTaskModalContainer.style.display = "none";
+		closeNewTaskModal();
 	});
 	headerAndExitContainer.appendChild(addNewTaskModalExitBtn);
 
@@ -204,8 +204,24 @@ function createListDropdown() {
 
 	return listsDropdown;
 }
+function blurSidebarMainContent() {
+	const sidebarToBlur = document.querySelector(".sidebarMainContainer");
+	const mainContentToBlur = document.querySelector(".mainContentContainer");
+
+	sidebarToBlur.classList.add("blurred");
+	mainContentToBlur.classList.add("blurred");
+}
+function unblurSidebarMainContent() {
+	const sidebarToBlur = document.querySelector(".sidebarMainContainer");
+	const mainContentToBlur = document.querySelector(".mainContentContainer");
+
+	sidebarToBlur.classList.remove("blurred");
+	mainContentToBlur.classList.remove("blurred");
+}
 
 function showNewTaskModal() {
+    blurSidebarMainContent()
+
 	if (currentModalInstance) {
 		document.body.removeChild(currentModalInstance);
 	}
@@ -237,14 +253,14 @@ function closeNewTaskModal() {
 	if (currentModalInstance) {
 		document.body.removeChild(currentModalInstance);
 		currentModalInstance = null;
+        unblurSidebarMainContent()
 	}
 }
-
 
 //todo add this fucntionality to the exit modal btn
 // function exitAndClearInputsNewTaskModal() {}
 
-export { createNewTaskModal, closeNewTaskModal, showNewTaskModal };
+export { createNewTaskModal, closeNewTaskModal, showNewTaskModal, blurSidebarMainContent, unblurSidebarMainContent };
 export const getTaskNameElement = () => {
 	const element = document.querySelector(".addNewTaskModalInputTaskName");
 	if (!element) console.error("Task name element not found");
