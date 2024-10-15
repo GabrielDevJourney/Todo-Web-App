@@ -1,0 +1,23 @@
+.filterTasksContainer{
+    padding: 0rem 2rem ;
+    display: flex;
+    justify-content: flex-end;
+}
+.filterTasksSelect {
+	width: 40px;
+	height: 40px;
+	background-image: url("../../../src/assets/filterTasksIcon.png");
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background-repeat: no-repeat;
+	background-position: right center;
+    color: transparent;
+    text-indent: -9999;
+}
+.filterTasksSelect::-ms-expand{
+    display: none;
+}
+.filterTasksSelect option{
+    color: var(--inputAndSelectMenusTextColor--)
+}

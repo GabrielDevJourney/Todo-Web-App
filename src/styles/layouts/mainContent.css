@@ -1,4 +1,6 @@
 @import '../components/mainContentHeader.css';
+@import '../components/mainContentFilterTasks.css';
+@import '../components/MainContentTasksViewer.css';
 
 .mainContentContainer{
     background-color: var(--backgroudcolor--);
