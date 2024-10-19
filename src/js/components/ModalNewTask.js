@@ -188,7 +188,7 @@ function createListDropdown() {
 	listsDropdown.className = "listsDropdown";
 
 	const defaultOption = document.createElement("option");
-	defaultOption.value = "";
+	defaultOption.value = " ";
 	defaultOption.textContent = "List";
 	defaultOption.disabled = true;
 	defaultOption.selected = true;
