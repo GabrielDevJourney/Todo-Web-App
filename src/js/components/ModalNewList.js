@@ -1,5 +1,4 @@
 import exitIcon from "../../../src/assets/exitIcon.png";
-import iro from "@jaames/iro";
 import { addNewList } from "../data/listsManager";
 import { addNewListItem } from "./SideBarListsSection";
 import {
