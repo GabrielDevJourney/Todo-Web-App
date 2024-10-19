@@ -68,29 +68,22 @@ function getListIdNewTaskModal() {
 
 	const selectedList = listDropdown.value;
 	if (!selectedList) {
-		console.error("No list selected");
+		console.error("No list selected", selectedList);
 		return null;
 	}
 
 	const list = Object.values(userLists).find(
 		(list) => list.name === selectedList
 	);
-	if (!list) {
-		console.error("Selected list not found");
-		return null;
+	if (list) {
+        return list.listId;
 	}
 
-	return list.listId;
 }
 
 function addTaskToList(task) {
     //get current list option id when submiting new task
     const listId = getListIdNewTaskModal();
-    if(!listId){
-        console.error('no valid list selected')
-        return
-    }
-
     const list = Object.values(userLists).find(
 		(list) => list.listId === listId
 	);

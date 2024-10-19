@@ -16,7 +16,7 @@ function getTaskProperties() {
 		description: getTaskDescriptionElement().value.trim(),
 		priority: getTaskPriorityElement().value,
 		dueDate: new Date(getTaskDueDateElement().value),
-		listId: getListIdNewTaskModal(),
+		listId: getListIdNewTaskModal() || null
 	};
 
 	console.log("task properties", taskProperties);
@@ -37,7 +37,7 @@ function createTask(name, description, priority, dueDate, listId) {
 		description,
 		priority,
 		dueDate: new Date(dueDate), // Convert to Date object
-		listId,
+		listId: listId || null,
 		completed: false, // Default to not completed
 	};
 }
@@ -49,13 +49,13 @@ function addTask(task) {
 
 function handleTaskSubmit() {
 	const newTask = getTaskProperties();
-	if (newTask && newTask.listId) {
+	if (newTask && newTask.name.trim()) {
 		addTask(newTask);
 		addTaskToList(newTask);
 		closeNewTaskModal();
 		return newTask;
 	} else {
-		alert("Fill all properties");
+		alert("Fill name of task please!");
 		return null;
 	}
 }
